@@ -1,4 +1,4 @@
-# ACNH Fish Guide
+# ACNH Fish Chart/Guide
 This program processes fish spawning data from a CSV file and provides a visual representation of when different fish spawn throughout the year. It also tracks caught fish from a separate text file and this will be used to suggest optimal months to fish during to maximize the odds of catching new fish.
 
 ## Current Features:
