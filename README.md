@@ -23,3 +23,4 @@ This program processes fish spawning data from a CSV file and provides a visual 
 
 ## Todo list:
 - For each month, calculate the number of caught fish vs the number of available fish in that month and then use that to suggest months to fish during.
+   - Considerations: Fish spawn in different sizes, bait allows for "rerolling" of fish sizes, it might be better to compare fish based on size first e.g. if there are 10 new fish in a month but they are all small fish and the next month there are also 10 new fish but 5 small (same small fish from last month) and 5 large, it would be better to fish in the next month, assuming that the other 5 small fish spawn at another time...? I need to think about this more...
