@@ -71,11 +71,3 @@ img {
     margin-left: auto;
     margin-right: 0;
 }
-
-.hidden {
-    display: none;
-}
-
-.showing {
-    display: inline-block;
-}

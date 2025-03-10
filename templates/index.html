@@ -19,76 +19,95 @@
     {% if image_url %}
     <h2>Spawning Calendar</h2>
     <div class="image_container">
-        <div class="hemisphere_selection">
-          <!-- https://www.svgrepo.com/svg/310651/circle-half-fill -->
-          <form action="/" method="post" style="display: inline">
-            <button
-              type="submit"
-              name="hemisphere"
-              value="NH"
-              class="button_container"
+      <div class="hemisphere_selection">
+        <!-- https://www.svgrepo.com/svg/310651/circle-half-fill -->
+        <form action="/" method="post" id="form1" style="display: inline">
+          <button
+            type="submit"
+            name="hemisphere"
+            value="NH"
+            class="button_container"
+            id="btn1"
+            onclick="setFormState('form2', 'static/images/SH_spawning_calendar.png')"
+          >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            width="64"
+            height="64"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M2.0277 11.25C2.41123 6.07745 6.72944 2 12 2C17.2706 2 21.5888 6.07745 21.9723 11.25H22V12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12V11.25H2.0277ZM4.03469 11.25H19.9653C19.5872 7.18341 16.1654 4 12 4C7.83463 4 4.41279 7.18341 4.03469 11.25Z"
+                fill="#212121"
+              ></path>
+            </g>
+          </svg>
+        </button>
+        </form>
+        <form action="/" method="post" id="form2" style="display: none">
+          <button
+            type="submit"
+            name="hemisphere"
+            value="SH"
+            class="button_container"
+            id="btn2"
+            onclick="setFormState('form1', 'static/images/NH_spawning_calendar.png')"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              transform="rotate(180)"
+              width="64"
+              height="64"
             >
-              <!-- <div>Northern</div> -->
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                transform="rotate(180)"
-                width="64"
-                height="64"
-                class="showing"
-              >
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></g>
-                <g id="SVGRepo_iconCarrier">
-                  <path
-                    d="M2.0277 11.25C2.41123 6.07745 6.72944 2 12 2C17.2706 2 21.5888 6.07745 21.9723 11.25H22V12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12V11.25H2.0277ZM4.03469 11.25H19.9653C19.5872 7.18341 16.1654 4 12 4C7.83463 4 4.41279 7.18341 4.03469 11.25Z"
-                    fill="#212121"
-                  ></path>
-                </g>
-              </svg>
-            </button>
-            <button
-              type="submit"
-              name="hemisphere"
-              value="SH"
-              class="button_container"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                width="64"
-                height="64"
-                class="showing"
-              >
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></g>
-                <g id="SVGRepo_iconCarrier">
-                  <path
-                    d="M2.0277 11.25C2.41123 6.07745 6.72944 2 12 2C17.2706 2 21.5888 6.07745 21.9723 11.25H22V12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12V11.25H2.0277ZM4.03469 11.25H19.9653C19.5872 7.18341 16.1654 4 12 4C7.83463 4 4.41279 7.18341 4.03469 11.25Z"
-                    fill="#212121"
-                  ></path>
-                </g>
-              </svg>
-            </button>
-          </form>
-        </div>       
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M2.0277 11.25C2.41123 6.07745 6.72944 2 12 2C17.2706 2 21.5888 6.07745 21.9723 11.25H22V12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12V11.25H2.0277ZM4.03469 11.25H19.9653C19.5872 7.18341 16.1654 4 12 4C7.83463 4 4.41279 7.18341 4.03469 11.25Z"
+                  fill="#212121"
+                ></path>
+              </g>
+            </svg>
+          </button>
+        </form>
+      </div>
       <img
+        id="image"
         src="{{ url_for('static', filename='images/' + image_url.split('/')[-1]) }}"
         alt="Spawning Calendar"
       />
     </div>
-    {% else %}
-        Error getting calendar. image_url is {{ image_url }}.
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var lastForm = localStorage.getItem("lastForm");
+        if (lastForm === "form2") {
+          document.getElementById("form1").style.display = "none";
+          document.getElementById("form2").style.display = "inline";
+        } else {
+          document.getElementById("form1").style.display = "inline";
+          document.getElementById("form2").style.display = "none";
+        }
+      });
+
+      function setFormState(formToShow, imageSrc) {
+        localStorage.setItem("lastForm", formToShow);
+        localStorage.setItem("imageSrc", imageSrc);
+      }
+    </script>
     {% endif %}
     <h2>List of Uncaught Fish:</h2>
     <ul>
