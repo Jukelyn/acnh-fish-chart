@@ -1,5 +1,7 @@
 **.vscode/**
 **.DS_Store
+**caught.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

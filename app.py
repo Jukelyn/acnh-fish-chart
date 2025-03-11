@@ -7,7 +7,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
-from unidecode import unidecode
+# from unidecode import unidecode  # For Music Filtering
 
 app = Flask(__name__, static_folder="static")
 
@@ -241,6 +241,7 @@ gyroids = list(gyroids["Name"].copy())
 artwork = pd.read_csv("data/artwork_datasheet.csv")
 artwork = list(set(artwork["Name"].copy()))
 
+# Music Filtering
 # music = pd.read_csv("data/music_datasheet.csv")
 # music = list(music["Name"].copy())
 # find_these_songs = [
@@ -306,7 +307,7 @@ def process():
     # I can easily remove art, bugs, fossils, and sea creatures
     # There may be way too many items to check though...
     # Music is kinda a pain to filter as well but I left the logic for it
-    # above, ctrl+f for "find_these_songs"
+    # above, ctrl+f for "Music Filtering"
     input_list = filter_stuff(input_list, sea_creatures)
     input_list = filter_stuff(input_list, fossils)
     input_list = filter_stuff(input_list, insects)

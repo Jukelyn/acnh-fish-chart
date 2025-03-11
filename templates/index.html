@@ -126,7 +126,7 @@
         id="all_fish_btn"
         class="button_container"
       >
-        Show All Fish
+        Show
       </button>
     </div>
     <div id="fishListContainer" style="display: none">
@@ -145,7 +145,7 @@
         id="uncaught_fish_btn"
         class="button_container"
       >
-        Show Uncaught Fish
+        Show
       </button>
     </div>
     <div id="uncaughtFishListContainer" style="display: none">
@@ -165,12 +165,10 @@
         var container = document.getElementById(containerId);
         if (container.style.display === "none") {
           container.style.display = "block";
-          button.textContent =
-            "Hide " + button.textContent.split(" ")[1] + " Fish";
+          button.textContent = "Hide";
         } else {
           container.style.display = "none";
-          button.textContent =
-            "Show " + button.textContent.split(" ")[1] + " Fish";
+          button.textContent = "Show";
         }
       }
     </script>
