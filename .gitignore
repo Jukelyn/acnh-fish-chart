@@ -1,6 +1,7 @@
 **.vscode/**
 **.DS_Store
 **caught.txt
+**.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
