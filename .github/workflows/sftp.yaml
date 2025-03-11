@@ -10,7 +10,6 @@ jobs:
   deploy-via-sftp:
     runs-on: ubuntu-latest
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
       - name: SFTP Deploy
@@ -22,7 +21,8 @@ jobs:
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
           local_path: ./* # On Github
-          remote_path: ${{ secrets.REMOTE_PATH }} # On server ex: /path/path/path/flask_app/
+          # On server ex: /path/path/path/flask_app/ places the content into flask_app directory
+          remote_path: ${{ secrets.REMOTE_PATH }}
           delete_remote_files: true
           # sftp args
           args: "-o ConnectTimeout=5"
