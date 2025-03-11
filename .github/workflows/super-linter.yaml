@@ -49,6 +49,9 @@ jobs:
             -e VALIDATE_PYTHON_BLACK=false \
             -e VALIDATE_ALL_CODEBASE=false \
             -e DEFAULT_BRANCH=main \
-            -e GITHUB_SHA=${{ github.sha }} \
             -e GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} \
+            -e GITHUB_SHA=${{ github.sha }} \
+            -e GITHUB_REPOSITORY=${{ github.repository }} \
+            -v "${{ github.workspace }}:/tmp/lint" \
+            -w /tmp/lint \
             github/super-linter:v4
