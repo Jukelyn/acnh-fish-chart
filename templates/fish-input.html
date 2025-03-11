@@ -20,6 +20,7 @@
       <a href="/">Home</a>
       <a class="active" href="/fish-input">Input Data</a>
     </div>
+
     <h1>Enter the fish you have caught (one per line):</h1>
     <div class="flex-wrap display: flex-wrap" style="text-align: center">
       <textarea
@@ -38,10 +39,7 @@
           margin-top: 10px;
         "
       >
-        <button
-          onclick="saveData(); sendDataToFlask();"
-          class="button_container"
-        >
+        <button onclick="saveAndSendData();" class="button_container">
           Send input
         </button>
         <button onclick="clearCache();" class="button_container">
@@ -49,22 +47,33 @@
         </button>
       </div>
     </div>
+    <div id="suggestions-container" style="display: none">
+      <h2>You entered some invalid fish names</h2>
+      These are the invalid names:
+      <ul id="invalid-fish-list"></ul>
+      Did you mean...
+      <ul id="suggestions-list"></ul>
+    </div>
 
     <script>
-      function saveData() {
+      function saveAndSendData() {
         let newData = document.getElementById("fishData").value;
         let existingData = localStorage.getItem("userInput");
+        let data;
+
         if (existingData) {
-          data = existingData + "\n" + newData;
+          let existingDataArray = existingData.split("\n");
+          let newDataArray = newData.split("\n");
+          let combinedDataArray = [
+            ...new Set([...existingDataArray, ...newDataArray]),
+          ];
+          data = combinedDataArray.join("\n");
         } else {
           data = newData;
         }
+
         localStorage.setItem("userInput", data); // Stores data in the browser
         console.log("Data saved in browser storage!");
-      }
-
-      function sendDataToFlask() {
-        let data = localStorage.getItem("userInput");
 
         fetch("/process", {
           method: "POST",
@@ -73,12 +82,47 @@
           },
           body: data,
         })
-          .then((response) => response.text())
+          .then((response) => response.json())
           .then((data) => {
-            console.log("Flask response: " + data);
-            window.location.href = "/"; // Redirect to the index page
+            console.log("Flask response: ", data);
+            if (data.invalid_fish_names && data.suggestions) {
+              displaySuggestions(data.invalid_fish_names, data.suggestions);
+            }
           })
-          .catch((error) => console.error("Error:", error));
+          .catch((error) => {
+            // SyntaxError happens when all entries are valid... or so I hope...
+            if (error instanceof SyntaxError) {
+              console.error("SyntaxError:", error);
+              window.location.href = "/";
+            } else {
+              console.error("Error:", error);
+            }
+          });
+      }
+
+      function displaySuggestions(invalidFish, suggestions) {
+        const invalidFishList = document.getElementById("invalid-fish-list");
+        const suggestionsList = document.getElementById("suggestions-list");
+        const suggestionsContainer = document.getElementById(
+          "suggestions-container"
+        );
+
+        invalidFishList.innerHTML = "";
+        suggestionsList.innerHTML = "";
+
+        invalidFish.forEach((fish) => {
+          const li = document.createElement("li");
+          li.textContent = fish;
+          invalidFishList.appendChild(li);
+        });
+
+        suggestions.forEach((suggestion) => {
+          const li = document.createElement("li");
+          li.textContent = suggestion;
+          suggestionsList.appendChild(li);
+        });
+
+        suggestionsContainer.style.display = "block";
       }
 
       function clearCache() {

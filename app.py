@@ -2,11 +2,12 @@
 import logging
 from datetime import datetime
 from thefuzz import process as fuzz_process
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
+from unidecode import unidecode
 
 app = Flask(__name__, static_folder="static")
 
@@ -14,6 +15,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 # Load fish data
 df = pd.read_csv("data/fish_datasheet.csv")
+
 
 # Relevant columns for NH_df
 NH_columns = [
@@ -114,7 +116,18 @@ plot_spawning_calendar(NH_df, "Northern Hemisphere",
 plot_spawning_calendar(SH_df, "Southern Hemisphere",
                        "SH_spawning_calendar.png")
 all_fishes: list[str] = list(df["Name"].dropna().unique())
-renamed_fish: dict[str, str] = {
+
+renamed: dict[str, str] = {  # Dict of items that need to be renamed
+    "citrus long horned beetle": "citrus long-horned beetle",
+    "earth boring dung beetle": "earth-boring dung beetle",
+    "man faced stink bug": "man-faced stink bug",
+    "shark tooth pattern": "shark-tooth pattern",
+    "queen alexandras birdwing": "Queen Alexandra's birdwing",
+    "rajah brookes birdwing": "Rajah Brooke's birdwing",
+    "t rex skull": "T. rex skull",
+    "t rex tail": "T. rex tail",
+    "t rex torso": "T. rex torso",
+    "rock head statue": "rock-head statue",
     "pop eyed goldfish": "pop-eyed goldfish",
     "soft shelled turtle": "soft-shelled turtle",
     "napoleonfish": "Napoleonfish",
@@ -134,7 +147,7 @@ def get_caught_fish(fishes_caught: list[str]) -> list[str]:
 
     for fishy in fishes_caught:
         fish_name = fishy.strip().replace("_", " ")
-        fish_name = renamed_fish.get(fish_name, fish_name)
+        fish_name = renamed.get(fish_name, fish_name)
 
         caught_items.add(fish_name)
 
@@ -177,16 +190,92 @@ def index():
 
 def get_closest_match(user_in: str, threshold: int = 80):
     possible_matches = [
-        fish for fish in all_fishes if user_in.lower() in fish.lower()]
+        fish for fish in all_fishes if user_in.lower() in fish.lower()
+    ]
 
-    if not possible_matches:
-        return None
+    if possible_matches:
+        possible_matches_scores = [
+            fuzz_process.extractOne(user_in, [fish])[1]
+            for fish in possible_matches
+        ]
+        possible_matches_max_score = max(possible_matches_scores)
+    else:
+        possible_matches_max_score = 0
 
     matches = fuzz_process.extract(user_in, all_fishes, limit=len(all_fishes))
     filtered_matches = [match for match,
                         score in matches if score >= threshold]
 
-    return filtered_matches if filtered_matches else None
+    if filtered_matches:
+        filtered_matches_scores = [
+            score for match, score in matches if score >= threshold
+        ]
+        filtered_matches_max_score = max(filtered_matches_scores)
+    else:
+        filtered_matches_max_score = 0
+
+    if possible_matches_max_score > filtered_matches_max_score:
+        return possible_matches
+
+    if filtered_matches_max_score > possible_matches_max_score:
+        return filtered_matches
+
+    if len(possible_matches) >= len(filtered_matches):
+        return possible_matches
+
+    return filtered_matches
+
+
+sea_creatures = pd.read_csv("data/sea_creatures_datasheet.csv")
+sea_creatures = list(sea_creatures["Name"].copy())
+
+insects = pd.read_csv("data/insects_datasheet.csv")
+insects = list(insects["Name"].copy())
+
+fossils = pd.read_csv("data/fossils_datasheet.csv")
+fossils = list(fossils["Name"].copy())
+
+gyroids = pd.read_csv("data/gyroids_datasheet.csv")
+gyroids = list(gyroids["Name"].copy())
+
+artwork = pd.read_csv("data/artwork_datasheet.csv")
+artwork = list(set(artwork["Name"].copy()))
+
+# music = pd.read_csv("data/music_datasheet.csv")
+# music = list(music["Name"].copy())
+# find_these_songs = [
+#     'cafe_kk',
+#     'kk_etude',
+#     'lucky_kk',
+#     'kk_stroll',
+#     'kk_synth',
+#     'surfin_kk',
+#     'rockin_kk',
+#     'kk_cruisin',
+#     'drivin'
+# ]
+# find_these_songs = [item.replace('_', ' ').replace(
+#     'kk', 'k.k.') for item in find_these_songs]
+# music = [unidecode(song.lower()).replace("'", "") for song in music]
+# found = []
+# for song in find_these_songs:
+#     if song in music:
+#         found.append(song)
+
+# print(len(found) == len(find_these_songs))  # True
+
+
+def filter_stuff(arr: list[str], filter_by: list[str]) -> list[str]:
+    arr = [renamed.get(insect, insect)
+           for insect in arr]
+
+    filtered_arr = []
+
+    for item in arr:
+        if item.lower() not in [thing.lower() for thing in filter_by]:
+            filtered_arr.append(item)
+
+    return filtered_arr
 
 
 def get_problems(input_fish: list[str]) -> set[str]:
@@ -208,34 +297,48 @@ def fish_input():
 def process():
     data = request.data.decode("utf-8")
 
-    input_fish_list = [fish.strip()
-                       for fish in data.split("\n") if fish.strip()]
+    input_list = [fish.strip().replace("_", " ")
+                  for fish in data.split("\n") if fish.strip()]
 
-    problems = get_problems(input_fish_list)
+    input_list = [renamed.get(fish, fish)
+                  for fish in input_list]
 
+    # I can easily remove art, bugs, fossils, and sea creatures
+    # There may be way too many items to check though...
+    # Music is kinda a pain to filter as well but I left the logic for it
+    # above, ctrl+f for "find_these_songs"
+    input_list = filter_stuff(input_list, sea_creatures)
+    input_list = filter_stuff(input_list, fossils)
+    input_list = filter_stuff(input_list, insects)
+    input_list = filter_stuff(input_list, gyroids)
+    input_list = filter_stuff(input_list, artwork)
+
+    print("\n"*10)
+    print(len(input_list))
+    print(input_list)
+    print("\n"*10)
+
+    problems = get_problems(input_list)
+    print("\n"*10)
+    print(len(problems))
+    print(problems)
+    print("\n"*10)
     if problems:
         suggestions = {}
         for prob in problems:
             closest = get_closest_match(prob)
-
-            if closest is None:
-                suggestions[prob] = None
-            else:
+            if closest:
                 suggestions[prob] = closest
 
         logging.debug("Invalid fish names found: %s", problems)
         logging.debug("Suggested names: %s", suggestions)
-        return render_template(
-            "fish-input.html",
-            suggestions=suggestions,
-            input_fish_list=input_fish_list
-        )
+        return jsonify({"suggestions": suggestions})
 
-    logging.debug("Fish input saved: %s", input_fish_list)
+    logging.debug("Fish input saved: %s", input_list)
     # pylint: disable=W0603
     global caught, uncaught, uncaught_NH_df, uncaught_SH_df
     caught, uncaught, uncaught_NH_df, uncaught_SH_df = process_fish_data(
-        input_fish_list)
+        input_list)
 
     return render_template(
         "index.html",

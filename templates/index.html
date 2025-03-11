@@ -15,7 +15,7 @@
       href="{{ url_for('static', filename='favicon.ico') }}"
     />
   </head>
-  <body>
+  <body style="--fish-count: {{ uncaught|length }}">
     <div class="topnav">
       <a class="active" href="/">Home</a>
       <a href="/fish-input">Input Data</a>
@@ -130,11 +130,10 @@
       </button>
     </div>
     <div id="fishListContainer" style="display: none">
-      <div style="display: flex; flex-wrap: wrap">
+      <div class="fish_list_count">Total Fish: {{ fish_list|length }}</div>
+      <div class="fish_list_container">
         {% for fish in fish_list %}
-        <div style="flex: 1 0 25%; box-sizing: border-box; padding: 5px">
-          {{ fish }}
-        </div>
+        <div class="fish_list">{{ fish }}</div>
         {% endfor %}
       </div>
     </div>
@@ -150,11 +149,12 @@
       </button>
     </div>
     <div id="uncaughtFishListContainer" style="display: none">
-      <div style="display: flex; flex-wrap: wrap">
+      <div class="fish_list_count">
+        Total Uncaught Fish: {{ uncaught_fish|length }}
+      </div>
+      <div class="fish_list_container">
         {% for fish in uncaught_fish %}
-        <div style="flex: 1 0 25%; box-sizing: border-box; padding: 5px">
-          {{ fish }}
-        </div>
+        <div class="fish_list">{{ fish }}</div>
         {% endfor %}
       </div>
     </div>
