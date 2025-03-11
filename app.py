@@ -1,6 +1,7 @@
 # pylint: disable=E0401, C0114, C0116
 import logging
 from datetime import datetime
+from thefuzz import fuzz, process
 from flask import Flask, render_template, request
 import pandas as pd
 import seaborn as sns
