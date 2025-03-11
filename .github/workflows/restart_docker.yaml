@@ -1,3 +1,4 @@
+---
 name: Restart Docker Container
 
 on:
@@ -20,7 +21,7 @@ jobs:
         
       - name: Restart Docker container
         run: |
-          ssh -i /tmp/private_key.pem -o StrictHostKeyChecking=no -p ${{ secrets.SSH_SERVER_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER }} 'docker restart acnh_fish_site'
+          ssh -i /tmp/private_key.pem -o StrictHostKeyChecking=no -p ${{ secrets.SSH_SERVER_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER }} 'docker compose up --build -d acnh_fish_site'
         
       - name: Clean up SSH private key
         run: |
