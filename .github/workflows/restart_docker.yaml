@@ -24,8 +24,9 @@ jobs:
           ssh -i /tmp/private_key.pem \
             -o StrictHostKeyChecking=no \
             -p ${{ secrets.SSH_SERVER_PORT }} \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER }} \
-            'docker compose up --build -d acnh_fish_site'
+             ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER }} \
+                  'cd /home/juke/git_stuff/flask_app && \
+                  docker compose up --build -d acnh_fish_site'
       - name: Clean up SSH private key
         run: |
           rm /tmp/private_key.pem
