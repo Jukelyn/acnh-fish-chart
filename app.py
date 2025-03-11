@@ -206,9 +206,8 @@ def fish_input():
 
 @app.route("/process", methods=["POST"])
 def process():
-    data = request.data.decode("utf-8")  # Get raw text
+    data = request.data.decode("utf-8")
 
-    # Convert to list, remove empty lines
     input_fish_list = [fish.strip()
                        for fish in data.split("\n") if fish.strip()]
 
@@ -216,7 +215,6 @@ def process():
 
     if problems:
         suggestions = {}
-        print(f"{problems} fishes are not valid.")
         for prob in problems:
             closest = get_closest_match(prob)
 
@@ -225,7 +223,13 @@ def process():
             else:
                 suggestions[prob] = closest
 
-        print(f"Suggested names: {suggestions}")
+        logging.debug("Invalid fish names found: %s", problems)
+        logging.debug("Suggested names: %s", suggestions)
+        return render_template(
+            "fish-input.html",
+            suggestions=suggestions,
+            input_fish_list=input_fish_list
+        )
 
     logging.debug("Fish input saved: %s", input_fish_list)
     # pylint: disable=W0603
@@ -233,7 +237,6 @@ def process():
     caught, uncaught, uncaught_NH_df, uncaught_SH_df = process_fish_data(
         input_fish_list)
 
-    # logging.debug("All fish list: %s", all_fish_list)
     return render_template(
         "index.html",
         fish_list=all_fish_list,

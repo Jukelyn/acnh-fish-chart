@@ -9,6 +9,8 @@
 }
 
 .topnav {
+    position: sticky;
+    top: 0px;
     overflow: hidden;
     background-color: #333;
 }
@@ -17,16 +19,26 @@
     float: right;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
+    padding: 14px 26px;
     text-decoration: none;
     font-size: 16px;
 }
 
 .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-    transform: scale(0.9);
+    background-color: transparent;
+    animation: bounce 2s;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(0);
+    }
+    40% {
+        transform: translateX(-23px);
+    }
+    60% {
+        transform: translateX(-13px);
+    }
 }
 
 .topnav a.active {
@@ -37,16 +49,20 @@
 body {
     font-family: Bokutoh_EB;
     background-color: #f0f0f0;
-    margin: 0;
-    padding: 20px;
+    margin: 0 auto;
 }
 
 h1 {
+    padding: 20px;
     font-family: Bokutoh_EB;
     margin-top: 10px;
     margin-bottom: 10px;
     color: #333;
     text-align: center;
+}
+
+h2 {
+    padding: 20px;
 }
 
 form {
@@ -127,14 +143,13 @@ img {
     transform: translateY(-7px);
 }
 
-
 .button_container:active {
     transform: translateY(-1px);
 }
 
 .svg_button_container {
     border: 0px;
-    margin-left: auto;
+    margin-left: 5px;
     margin-right: auto;
     background-color: transparent;
 }
