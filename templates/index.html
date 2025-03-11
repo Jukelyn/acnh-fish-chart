@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ACNH Fish Spawning Calendar</title>
+
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
@@ -15,6 +16,11 @@
     />
   </head>
   <body>
+    <div class="topnav">
+      <a class="active" href="/">Home</a>
+      <a href="/fish-input">Input Data</a>
+    </div>
+
     <h1>ACNH Fish Spawning Calendar</h1>
     {% if image_url %}
     <h2>All Fish Spawning Calendar</h2>
@@ -113,45 +119,59 @@
     </script>
     {% endif %}
 
-    <div style="display: flex; align-items: center; justify-content: center;">
-      <h2 style="margin-right: 15px;">List of All Fish:</h2>
-      <button onclick="toggleFishList('fishListContainer', 'all_fish_btn')" id="all_fish_btn" class="button_container">Show All Fish</button>
+    <div style="display: flex; align-items: center; justify-content: center">
+      <h2 style="margin-right: 15px">List of All Fish:</h2>
+      <button
+        onclick="toggleFishList('fishListContainer', 'all_fish_btn')"
+        id="all_fish_btn"
+        class="button_container"
+      >
+        Show All Fish
+      </button>
     </div>
     <div id="fishListContainer" style="display: none">
       <div style="display: flex; flex-wrap: wrap">
-      {% for fish in fish_list %}
-      <div style="flex: 1 0 25%; box-sizing: border-box; padding: 5px">
-        {{ fish }}
-      </div>
-      {% endfor %}
+        {% for fish in fish_list %}
+        <div style="flex: 1 0 25%; box-sizing: border-box; padding: 5px">
+          {{ fish }}
+        </div>
+        {% endfor %}
       </div>
     </div>
 
-    <div style="display: flex; align-items: center; justify-content: center;">
-      <h2 style="margin-right: 15px;">List of Uncaught Fish:</h2>
-      <button onclick="toggleFishList('uncaughtFishListContainer', 'uncaught_fish_btn')" id="uncaught_fish_btn" class="button_container">Show Uncaught Fish</button>
+    <div style="display: flex; align-items: center; justify-content: center">
+      <h2 style="margin-right: 15px">List of Uncaught Fish:</h2>
+      <button
+        onclick="toggleFishList('uncaughtFishListContainer', 'uncaught_fish_btn')"
+        id="uncaught_fish_btn"
+        class="button_container"
+      >
+        Show Uncaught Fish
+      </button>
     </div>
     <div id="uncaughtFishListContainer" style="display: none">
       <div style="display: flex; flex-wrap: wrap">
-      {% for fish in uncaught_fish %}
-      <div style="flex: 1 0 25%; box-sizing: border-box; padding: 5px">
-        {{ fish }}
-      </div>
-      {% endfor %}
+        {% for fish in uncaught_fish %}
+        <div style="flex: 1 0 25%; box-sizing: border-box; padding: 5px">
+          {{ fish }}
+        </div>
+        {% endfor %}
       </div>
     </div>
-    
+
     <script>
       function toggleFishList(containerId, buttonId) {
-      var button = document.getElementById(buttonId);
-      var container = document.getElementById(containerId);
-      if (container.style.display === "none") {
-        container.style.display = "block";
-        button.textContent = "Hide " + button.textContent.split(' ')[1] + " Fish";
-      } else {
-        container.style.display = "none";
-        button.textContent = "Show " + button.textContent.split(' ')[1] + " Fish";
-      }
+        var button = document.getElementById(buttonId);
+        var container = document.getElementById(containerId);
+        if (container.style.display === "none") {
+          container.style.display = "block";
+          button.textContent =
+            "Hide " + button.textContent.split(" ")[1] + " Fish";
+        } else {
+          container.style.display = "none";
+          button.textContent =
+            "Show " + button.textContent.split(" ")[1] + " Fish";
+        }
       }
     </script>
   </body>

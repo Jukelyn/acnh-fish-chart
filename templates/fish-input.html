@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ACNH Fish Spawning Calendar</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+    />
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="/">Home</a>
+      <a class="active" href="/fish-input">Input Data</a>
+    </div>
+    <h1>Enter the fish you have caught (one per line):</h1>
+    <div class="flex-wrap display: flex-wrap" style="text-align: center">
+      <textarea
+        autofocus
+        id="fishData"
+        placeholder="Type here..."
+        rows="5"
+        cols="50"
+        style="resize: none; display: block; margin: 0 auto"
+      ></textarea>
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+          margin-top: 10px;
+        "
+      >
+        <button
+          onclick="saveData(); sendDataToFlask();"
+          class="button_container"
+        >
+          Send input
+        </button>
+        <button onclick="clearCache();" class="button_container">
+          Clear Cache
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function saveData() {
+        let newData = document.getElementById("fishData").value;
+        let existingData = localStorage.getItem("userInput");
+        if (existingData) {
+          data = existingData + "\n" + newData;
+        } else {
+          data = newData;
+        }
+        localStorage.setItem("userInput", data); // Stores data in the browser
+        // alert("Data saved in browser storage!");
+      }
+
+      function sendDataToFlask() {
+        let data = localStorage.getItem("userInput");
+
+        fetch("/process", {
+          method: "POST",
+          headers: {
+            "Content-Type": "text/plain",
+          },
+          body: data, // Send as plain text
+        })
+          .then((response) => response.text())
+          .then((data) => {
+            console.log("Flask response: " + data);
+            window.location.href = "/"; // Redirect to the index page
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      function clearCache() {
+        localStorage.removeItem("userInput");
+        console.log("Cache cleared!");
+      }
+    </script>
+  </body>
+</html>

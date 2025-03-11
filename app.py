@@ -1,7 +1,7 @@
 # pylint: disable=E0401, C0114, C0116
 import logging
 from datetime import datetime
-from thefuzz import fuzz, process
+from thefuzz import process as fuzz_process
 from flask import Flask, render_template, request
 import pandas as pd
 import seaborn as sns
@@ -84,20 +84,18 @@ renamed_fish: dict[str, str] = {"pop eyed goldfish": "pop-eyed goldfish",
                                 }
 
 
-def get_caught_fish() -> list[str]:
-    """Gets the list of caught fish from the caught.txt file.
+# Change this to get inputs from browser instead
+def get_caught_fish(fishes_caught: list[str] = None) -> list[str]:
+    if not fishes_caught:
+        return []
 
-    Returns:
-        list[str]: A list of the caught fish.
-    """
-    with open("data/caught.txt", "r", encoding="utf-8") as file:
-        caught_items = set()
+    caught_items = set()
 
-        for line in file:
-            fish_name = line.strip().replace('_', ' ')
-            fish_name = renamed_fish.get(fish_name, fish_name)
+    for fishy in fishes_caught:
+        fish_name = fishy.strip().replace('_', ' ')
+        fish_name = renamed_fish.get(fish_name, fish_name)
 
-            caught_items.add(fish_name)
+        caught_items.add(fish_name)
 
     return [fish for fish in all_fishes if fish in caught_items]
 
@@ -107,15 +105,13 @@ uncaught_fish = [fish for fish in all_fishes if fish not in caught_fish]
 uncaught_NH_df = NH_df[NH_df['Name'].isin(uncaught_fish)].copy()
 uncaught_SH_df = SH_df[SH_df['Name'].isin(uncaught_fish)].copy()
 
-
 CURRENT_IMAGE = "static/images/NH_spawning_calendar.png"
+all_fish_list = df["Name"].dropna().unique().tolist()
 
 
-# Home page route
 @app.route('/', methods=['GET', 'POST'])
 def index():
     logging.debug("Handling request to '/' route")
-    fish_list = df["Name"].dropna().unique().tolist()
     global CURRENT_IMAGE  # pylint: disable=W0603
     if request.method == 'POST':
         logging.debug("Received POST request")
@@ -125,7 +121,74 @@ def index():
         elif button == "SH":
             CURRENT_IMAGE = "static/images/SH_spawning_calendar.png"
 
-    return render_template('index.html', fish_list=fish_list,
+    return render_template('index.html', fish_list=all_fish_list,
+                           uncaught_fish=uncaught_fish,
+                           image_url=CURRENT_IMAGE)
+
+
+@app.route('/fish-input')
+def fish_input():
+    return render_template('fish-input.html')
+
+
+def get_closest_match(user_in: str, threshold: int = 80):
+    possible_matches = [
+        fish for fish in all_fishes if user_in.lower() in fish.lower()]
+
+    if not possible_matches:
+        return None
+
+    matches = fuzz_process.extract(user_in, all_fishes, limit=len(all_fishes))
+    filtered_matches = [match for match,
+                        score in matches if score >= threshold]
+
+    return filtered_matches if filtered_matches else None
+
+
+def get_problems(input_fish: list[str]) -> list[str]:
+    problem_children = set()
+
+    for item in input_fish:
+        if item not in all_fishes:
+            problem_children.add(item)
+
+    return problem_children
+
+
+@app.route('/process', methods=['POST'])
+def process():
+    data = request.data.decode("utf-8")  # Get raw text
+
+    # Convert to list, remove empty lines
+    input_fish_list = [fish.strip()
+                       for fish in data.split("\n") if fish.strip()]
+
+    problems = get_problems(input_fish_list)
+
+    if problems:
+        suggestions = {}
+        print(f"{problems} fishes are not valid.")
+        for prob in problems:
+            closest = get_closest_match(prob)
+
+            if closest is None:
+                suggestions[prob] = None
+            else:
+                suggestions[prob] = closest
+
+        print(f"Suggested names: {suggestions}")
+
+    logging.debug("Fish input saved: %s", input_fish_list)
+    # pylint: disable=W0603
+    global caught_fish, uncaught_fish, uncaught_NH_df, uncaught_SH_df
+    caught_fish = get_caught_fish(input_fish_list)
+
+    uncaught_fish = [fish for fish in all_fishes if fish not in caught_fish]
+    uncaught_NH_df = NH_df[NH_df['Name'].isin(uncaught_fish)].copy()
+    uncaught_SH_df = SH_df[SH_df['Name'].isin(uncaught_fish)].copy()
+
+    # logging.debug("All fish list: %s", all_fish_list)
+    return render_template('index.html', fish_list=all_fish_list,
                            uncaught_fish=uncaught_fish,
                            image_url=CURRENT_IMAGE)
 
