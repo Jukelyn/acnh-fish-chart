@@ -1,11 +1,22 @@
+@font-face {
+    font-family: Bokutoh_EB;
+    src: url("../fonts/Bokutoh_EB.otf");
+}
+
+@font-face {
+    font-family: Bokutoh_M;
+    src: url("../fonts/Bokutoh_M.otf");
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: Bokutoh_EB;
     background-color: #f0f0f0;
     margin: 0;
     padding: 20px;
 }
 
 h1 {
+    font-family: Bokutoh_EB;
     margin-top: 10px;
     margin-bottom: 10px;
     color: #333;
@@ -25,11 +36,13 @@ select, button {
 }
 
 ul {
+    font-family: Bokutoh_M;
     list-style-type: none;
     padding: 0;
 }
 
 li {
+    font-family: Bokutoh_M;
     background-color: #fff;
     margin: 5px 0;
     padding: 10px;
@@ -38,7 +51,7 @@ li {
 }
 
 img {
-    width: 90%;
+    width: 100%;
     height: auto;
     margin-top: 20px;
     display: block;
@@ -46,18 +59,54 @@ img {
     margin-right: auto;
 }
 
-.image_container {
-    max-height: 600px;
-    overflow: auto;
-    border: 1px solid #ddd;
-    border-radius: 16px;
-    padding: 10px;
+.image_container_outer {
+    width: 75%;
+    border-radius: 16pt;
+    overflow: overlay;
+    padding-right: 2px;
+    padding-top: 2px;
+    border: 2px solid #ddd;
     background-color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image_container_inner {
+    height: 600px;
+    padding: 10px;
+    overflow-y: overlay;
 }
 
 .button_container {
-    /* border: 15px solid #999; */
-    /* border-radius: 16px; */
+    padding: 1.3em 2em;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+}
+
+.button_container:hover {
+    background-color: #23c483;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+
+.button_container:active {
+    transform: translateY(-1px);
+}
+
+.svg_button_container {
     border: 0px;
     margin-left: auto;
     margin-right: auto;
@@ -65,9 +114,7 @@ img {
 }
 
 .hemisphere_selection {
-    border: 5px solid #333;
-    border-radius: 16px;
-    width: min-content;
-    margin-left: auto;
-    margin-right: 0;
+    width: 80px;
+    margin-left: 0;
+    margin-right: auto;
 }
