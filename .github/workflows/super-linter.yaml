@@ -32,10 +32,10 @@ jobs:
 
       - name: Pull Super Linter (if not cached)
         run: |
-          if ! docker image inspect super-linter:v4 >/dev/null 2>&1; then
-            docker pull super-linter:v4
+          if ! docker image inspect github/super-linter:v4 >/dev/null 2>&1; then
+            docker pull github/super-linter:v4
             mkdir -p /tmp/.docker-cache
-            docker save super-linter:v4 -o /tmp/.docker-cache/super-linter.tar
+            docker save github/super-linter:v4 -o /tmp/.docker-cache/super-linter.tar
           fi
 
       - name: Run Super Linter
