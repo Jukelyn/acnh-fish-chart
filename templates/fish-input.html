@@ -60,7 +60,7 @@
           data = newData;
         }
         localStorage.setItem("userInput", data); // Stores data in the browser
-        // alert("Data saved in browser storage!");
+        console.log("Data saved in browser storage!");
       }
 
       function sendDataToFlask() {
@@ -71,7 +71,7 @@
           headers: {
             "Content-Type": "text/plain",
           },
-          body: data, // Send as plain text
+          body: data,
         })
           .then((response) => response.text())
           .then((data) => {

@@ -85,8 +85,11 @@ renamed_fish: dict[str, str] = {"pop eyed goldfish": "pop-eyed goldfish",
 
 
 # Change this to get inputs from browser instead
-def get_caught_fish(fishes_caught: list[str] = None) -> list[str]:
-    if not fishes_caught:
+def get_caught_fish(fishes_caught: list[str]) -> list[str]:
+    try:
+        if not fishes_caught[0]:
+            return []
+    except IndexError:
         return []
 
     caught_items = set()
@@ -100,7 +103,7 @@ def get_caught_fish(fishes_caught: list[str] = None) -> list[str]:
     return [fish for fish in all_fishes if fish in caught_items]
 
 
-caught_fish = get_caught_fish()
+caught_fish = get_caught_fish([])
 uncaught_fish = [fish for fish in all_fishes if fish not in caught_fish]
 uncaught_NH_df = NH_df[NH_df['Name'].isin(uncaught_fish)].copy()
 uncaught_SH_df = SH_df[SH_df['Name'].isin(uncaught_fish)].copy()
@@ -145,7 +148,7 @@ def get_closest_match(user_in: str, threshold: int = 80):
     return filtered_matches if filtered_matches else None
 
 
-def get_problems(input_fish: list[str]) -> list[str]:
+def get_problems(input_fish: list[str]) -> set[str]:
     problem_children = set()
 
     for item in input_fish:
