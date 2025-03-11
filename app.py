@@ -103,10 +103,15 @@ def get_caught_fish(fishes_caught: list[str]) -> list[str]:
     return [fish for fish in all_fishes if fish in caught_items]
 
 
-caught_fish = get_caught_fish([])
-uncaught_fish = [fish for fish in all_fishes if fish not in caught_fish]
-uncaught_NH_df = NH_df[NH_df['Name'].isin(uncaught_fish)].copy()
-uncaught_SH_df = SH_df[SH_df['Name'].isin(uncaught_fish)].copy()
+def process_fish_data(input_fish_list=None):
+    caught_fish = get_caught_fish(input_fish_list or [])
+    uncaught_fish = [fish for fish in all_fishes if fish not in caught_fish]
+    df_nh_uncaught = NH_df[NH_df['Name'].isin(uncaught_fish)].copy()
+    df_sh_uncaught = SH_df[SH_df['Name'].isin(uncaught_fish)].copy()
+    return caught_fish, uncaught_fish, df_nh_uncaught, df_sh_uncaught
+
+
+caught, uncaught, uncaught_NH_df, uncaught_SH_df = process_fish_data()
 
 CURRENT_IMAGE = "static/images/NH_spawning_calendar.png"
 all_fish_list = df["Name"].dropna().unique().tolist()
@@ -125,7 +130,7 @@ def index():
             CURRENT_IMAGE = "static/images/SH_spawning_calendar.png"
 
     return render_template('index.html', fish_list=all_fish_list,
-                           uncaught_fish=uncaught_fish,
+                           uncaught_fish=uncaught,
                            image_url=CURRENT_IMAGE)
 
 
@@ -183,16 +188,13 @@ def process():
 
     logging.debug("Fish input saved: %s", input_fish_list)
     # pylint: disable=W0603
-    global caught_fish, uncaught_fish, uncaught_NH_df, uncaught_SH_df
-    caught_fish = get_caught_fish(input_fish_list)
-
-    uncaught_fish = [fish for fish in all_fishes if fish not in caught_fish]
-    uncaught_NH_df = NH_df[NH_df['Name'].isin(uncaught_fish)].copy()
-    uncaught_SH_df = SH_df[SH_df['Name'].isin(uncaught_fish)].copy()
+    global caught, uncaught, uncaught_NH_df, uncaught_SH_df
+    caught, uncaught, uncaught_NH_df, uncaught_SH_df = process_fish_data(
+        input_fish_list)
 
     # logging.debug("All fish list: %s", all_fish_list)
     return render_template('index.html', fish_list=all_fish_list,
-                           uncaught_fish=uncaught_fish,
+                           uncaught_fish=uncaught,
                            image_url=CURRENT_IMAGE)
 
 
