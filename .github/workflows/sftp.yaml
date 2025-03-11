@@ -22,7 +22,7 @@ jobs:
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
           local_path: ./* # On Github
-          # On server ex: /path/path/path/flask_app/ places the content into flask_app directory
+          # Ex: /path/flask_app/ places the content into flask_app directory
           remote_path: ${{ secrets.REMOTE_PATH }}
           delete_remote_files: true
           # sftp args
