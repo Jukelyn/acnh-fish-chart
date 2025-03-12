@@ -20,78 +20,75 @@
       <a class="active" href="/">Home</a>
       <a href="/fish-input">Input Data</a>
     </div>
-
     <h1>ACNH Fish Spawning Calendar</h1>
     {% if image_url %}
-    <h2>All Fish Spawning Calendar</h2>
     <div class="image_container_outer">
       <div class="image_container_inner">
-        <div class="hemisphere_selection">
-          <!-- https://www.svgrepo.com/svg/310651/circle-half-fill -->
-          <form action="/" method="post" id="form1" style="display: inline">
-            <button
-              type="submit"
-              name="hemisphere"
-              value="NH"
-              class="svg_button_container"
-              id="btn1"
-              onclick="setFormState('form2', 'static/images/SH_spawning_calendar.png')"
-            >
-              <svg
-                width="64px"
-                height="64px"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                transform="rotate(0)"
+        <div class="hemisphere_selection_outer">
+          <div class="hemisphere_selection_btns">
+            <!-- https://www.svgrepo.com/svg/310651/circle-half-fill -->
+            <form action="/" method="post" id="form1" style="display: inline">
+              <button
+                type="submit"
+                name="hemisphere"
+                value="NH"
+                class="svg_button_container"
+                id="btn1"
+                onclick="setFormState('form2', 'static/images/SH_spawning_calendar.png')"
               >
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></g>
-                <g id="SVGRepo_iconCarrier">
-                  <path
-                    d="M2.0277 11.25C2.41123 6.07745 6.72944 2 12 2C17.2706 2 21.5888 6.07745 21.9723 11.25H22V12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12V11.25H2.0277ZM12 3.5C7.55831 3.5 3.91233 6.90686 3.53263 11.25H20.4674C20.0877 6.90686 16.4417 3.5 12 3.5Z"
-                    fill="#212121"
-                  ></path>
-                </g>
-              </svg>
-            </button>
-          </form>
-          <form action="/" method="post" id="form2" style="display: none">
-            <button
-              type="submit"
-              name="hemisphere"
-              value="SH"
-              class="svg_button_container"
-              id="btn2"
-              onclick="setFormState('form1', 'static/images/NH_spawning_calendar.png')"
-            >
-              <svg
-                width="64px"
-                height="64px"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                transform="rotate(180)"
+                <svg
+                  viewBox="2 2 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  transform="rotate(0)"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M2.0277 11.25C2.41123 6.07745 6.72944 2 12 2C17.2706 2 21.5888 6.07745 21.9723 11.25H22V12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12V11.25H2.0277ZM12 3.5C7.55831 3.5 3.91233 6.90686 3.53263 11.25H20.4674C20.0877 6.90686 16.4417 3.5 12 3.5Z"
+                      fill="#212121"
+                    ></path>
+                  </g>
+                </svg>
+              </button>
+            </form>
+            <form action="/" method="post" id="form2" style="display: none">
+              <button
+                type="submit"
+                name="hemisphere"
+                value="SH"
+                class="svg_button_container"
+                id="btn2"
+                onclick="setFormState('form1', 'static/images/NH_spawning_calendar.png')"
               >
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></g>
-                <g id="SVGRepo_iconCarrier">
-                  <path
-                    d="M2.0277 11.25C2.41123 6.07745 6.72944 2 12 2C17.2706 2 21.5888 6.07745 21.9723 11.25H22V12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12V11.25H2.0277ZM12 3.5C7.55831 3.5 3.91233 6.90686 3.53263 11.25H20.4674C20.0877 6.90686 16.4417 3.5 12 3.5Z"
-                    fill="#212121"
-                  ></path>
-                </g>
-              </svg>
-            </button>
-          </form>
+                <svg
+                  viewBox="2 2 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  transform="rotate(180)"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M2.0277 11.25C2.41123 6.07745 6.72944 2 12 2C17.2706 2 21.5888 6.07745 21.9723 11.25H22V12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12V11.25H2.0277ZM12 3.5C7.55831 3.5 3.91233 6.90686 3.53263 11.25H20.4674C20.0877 6.90686 16.4417 3.5 12 3.5Z"
+                      fill="#212121"
+                    ></path>
+                  </g>
+                </svg>
+              </button>
+            </form>
+          </div>
+          <div class="hemisphere_selection_text">Change Hemispheres</div>
         </div>
         <img
           id="image"
@@ -103,6 +100,9 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         var lastForm = localStorage.getItem("lastForm");
+        if (!lastForm) {
+          lastForm = "form2";
+        }
         if (lastForm === "form2") {
           document.getElementById("form1").style.display = "none";
           document.getElementById("form2").style.display = "inline";
@@ -119,8 +119,8 @@
     </script>
     {% endif %}
 
-    <div style="display: flex; align-items: center; justify-content: center">
-      <h2 style="margin-right: 15px">List of All Fish:</h2>
+    <div class="fishContainerHeading">
+      <h2>List of All Fish:</h2>
       <button
         onclick="toggleFishList('fishListContainer', 'all_fish_btn')"
         id="all_fish_btn"
@@ -138,8 +138,8 @@
       </div>
     </div>
 
-    <div style="display: flex; align-items: center; justify-content: center">
-      <h2 style="margin-right: 15px">List of Uncaught Fish:</h2>
+    <div class="fishContainerHeading">
+      <h2>List of Uncaught Fish:</h2>
       <button
         onclick="toggleFishList('uncaughtFishListContainer', 'uncaught_fish_btn')"
         id="uncaught_fish_btn"

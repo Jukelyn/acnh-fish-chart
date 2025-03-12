@@ -1,13 +1,13 @@
-services:
-  acnh_fish_site:
-    container_name: acnh_fish_site
-    build:
-      context: .
-      dockerfile: Dockerfile
-    restart: always
-    networks:
-      - main_sites
+# services:
+#   acnh_fish_site:
+#     container_name: acnh_fish_site
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     restart: always
+#     networks:
+#       - main_sites
 
-networks:
-  main_sites:
-    external: true
+# networks:
+#   main_sites:
+#     external: true
