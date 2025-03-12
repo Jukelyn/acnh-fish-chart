@@ -27,21 +27,8 @@
 
 .topnav a:hover {
     background-color: transparent;
-    animation: bounce 2s;
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateX(0);
-    }
-
-    40% {
-        transform: translateX(-23px);
-    }
-
-    60% {
-        transform: translateX(-13px);
-    }
+    transform: translateX(-20px);
+    transition: all 0.3s ease 0s;
 }
 
 .topnav a.active {
@@ -106,6 +93,8 @@ img {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    transition: opacity 0.8s ease;
+    opacity: 1;
 }
 
 .image_container_outer {
@@ -172,11 +161,10 @@ svg {
 .svg_button_container svg {
     width: 80%;
     height: 80%;
-    transform-origin: center;
 }
 
 .hemisphere_selection_outer {
-    background-color: red;
+    /* background-color: red; */
     display: flex;
     align-items: center;
 }
@@ -184,7 +172,7 @@ svg {
 .hemisphere_selection_btns {
     margin: 0;
     padding: 0;
-    background-color: blue;
+    /* background-color: blue; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -195,7 +183,7 @@ svg {
 }
 
 .hemisphere_selection_text {
-    background-color: gold;
+    /* background-color: gold; */
     display: inline-block;
     margin-left: 10px;
 }
