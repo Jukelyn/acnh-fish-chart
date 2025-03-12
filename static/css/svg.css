@@ -1,0 +1,19 @@
+.svg_button_container {
+    border: 0px;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+svg {
+    display: block;
+    margin: auto;
+}
+
+.svg_button_container svg {
+    width: 80%;
+    height: 80%;
+}

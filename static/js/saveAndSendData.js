@@ -1,5 +1,5 @@
 function saveAndSendData() {
-  let newData = document.getElementById("fishData").value;
+  let newData = document.getElementById("fish-data").value;
   let existingData = localStorage.getItem("userInput");
   let data;
 

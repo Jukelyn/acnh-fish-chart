@@ -1,0 +1,56 @@
+.fish_list_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    justify-content: left;
+    /* Center the grid items */
+}
+
+.fish_list {
+    flex: 0 1 15%;
+    box-sizing: border-box;
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+    width: auto;
+    height: auto;
+    margin: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fish_list_count {
+    text-align: right;
+    padding-right: 10%;
+}
+
+.fish_list_count_color {
+    color: hsl(calc(120 - (120 * var(--fish-count, 0) / 80)), 100%, 50%);
+}
+
+.fishContainerHeading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 1200px) {
+    .fish_list {
+        flex: 0 1 28%;
+        /* Adjust for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .fish_list {
+        flex: 0 1 45%;
+        /* Adjust for small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .fish_list {
+        flex: 0 1 100%;
+        /* Adjust for extra small screens */
+    }
+}

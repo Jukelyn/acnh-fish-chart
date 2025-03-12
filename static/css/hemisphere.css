@@ -1,0 +1,24 @@
+.hemisphere_selection_outer {
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+}
+
+.hemisphere_selection_btns {
+    margin: 0;
+    padding: 0;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.hemisphere_selection_text {
+    /* background-color: gold; */
+    display: inline-block;
+    margin-left: 10px;
+}

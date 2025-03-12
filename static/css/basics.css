@@ -1,0 +1,47 @@
+body {
+    font-family: Bokutoh_EB;
+    background-color: #f0f1ed;
+    margin: 0 auto;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+select, button {
+    margin-left: 10px;
+}
+
+ul {
+    font-family: Bokutoh_M;
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    font-family: Bokutoh_M;
+    background-color: #fff;
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+a {
+    color: unset;
+    text-decoration: none;
+}
+
+a:visited {
+    color: unset;
+    text-decoration: none;
+}
+
+a:hover {
+    color: unset;
+    text-decoration: none;
+}
