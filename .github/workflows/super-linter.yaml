@@ -21,7 +21,6 @@ jobs:
         env:
           VALIDATE_PYTHON_BLACK: false
           VALIDATE_ALL_CODEBASE: false
-          VALIDATE_YAML: false
-          VALIDATE_YAML_PRETTIER: false
+          VALIDATE_GITHUB_ACTIONS: false
           DEFAULT_BRANCH: "main"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

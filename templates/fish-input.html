@@ -42,7 +42,7 @@
         <button onclick="saveAndSendData();" class="button_container">
           Send input
         </button>
-        <button onclick="clearCache();" class="button_container">
+        <button onclick="clearCachedInput();" class="button_container">
           Clear Cache
         </button>
       </div>
@@ -56,11 +56,6 @@
     </div>
     <script src="{{ url_for('static', filename='js/saveAndSendData.js')}}"></script>
     <script src="{{ url_for('static', filename='js/displaySuggestions.js')}}"></script>
-    <script>
-      function clearCache() {
-        localStorage.removeItem("userInput");
-        console.log("Cache cleared!");
-      }
-    </script>
+    <script src="{{ url_for('static', filename='js/clearCachedInput.js')}}"></script>
   </body>
 </html>
