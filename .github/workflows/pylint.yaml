@@ -22,4 +22,4 @@ jobs:
           pip install pylint
       - name: Analysing the code with pylint
         run: |
-          PYTHONPATH=. pylint "$(git ls-files '*.py')"
+          PYTHONPATH=. pylint $(git ls-files '*.py')
