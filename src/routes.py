@@ -65,7 +65,7 @@ def register_routes(app):
             image_url=ut.CURRENT_IMAGE
         )
 
-    @app.route("/fish-input")
+    @app.route("/fish-input/")
     def fish_input():
         """
         Renders the fish input template.
@@ -77,7 +77,7 @@ def register_routes(app):
         """
         return render_template("fish-input.html")
 
-    @app.route("/process", methods=["POST"])
+    @app.route("/process/", methods=["POST"])
     def process():
         """
         Process the incoming fish data from the request, filter out unwanted
