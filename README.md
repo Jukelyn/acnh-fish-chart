@@ -1,3 +1,16 @@
+### Statuses Badges
+
+![Pylint Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/pylint.yaml/badge.svg)
+![Docker Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/restart_docker.yaml/badge.svg)
+![SFTP Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/sftp.yaml/badge.svg)
+![Super Linter Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/super-linter.yaml/badge.svg)
+
+### Built using:
+
+![Python](https://img.shields.io/badge/python-3670A0?style=plastic&logo=python&logoColor=ffdd54)
+![Flask](https://img.shields.io/badge/flask-%23000.svg?style=plastic&logo=flask&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=plastic&logo=javascript&logoColor=%23F7DF1E)
+
 # ACNH Fish Chart/Guide
 
 This program processes fish spawning data from a CSV file and provides a visual representation of when different fish spawn throughout the year. It also tracks caught fish from a separate text file and this will be used to suggest optimal months to fish during to maximize the odds of catching new fish.
