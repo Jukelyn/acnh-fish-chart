@@ -2,6 +2,11 @@ body {
     font-family: Bokutoh_EB;
     background-color: #f0f1ed;
     margin: 0 auto;
+    background-image: url('/static/images/tileable_bg_large.webp');
+    background-repeat: repeat;
+    background-size: contain;
+    background-position: top left;
+    background-attachment: fixed;
 }
 
 form {
