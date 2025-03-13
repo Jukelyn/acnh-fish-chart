@@ -1,4 +1,4 @@
-![Repo Banner](https://github.com/Jukelyn/acnh-fish-chart/blob/main/static/images/repo_banner.png)
+![Repo Banner](https://github.com/Jukelyn/acnh-fish-chart/blob/main/static/images/repo_banner.png?raw=true&v=2)
 
 <div align="center">
    
