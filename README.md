@@ -1,35 +1,45 @@
-### Statuses Badges
+![Repo Banner](https://github.com/Jukelyn/acnh-fish-chart/blob/main/static/images/repo_banner.png)
 
+<div align="center">
+   
 ![Pylint Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/pylint.yaml/badge.svg)
 ![Docker Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/restart_docker.yaml/badge.svg)
 ![SFTP Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/sftp.yaml/badge.svg)
 ![Super Linter Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/super-linter.yaml/badge.svg)
 
-### Built using:
+### Built using
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=plastic&logo=python&logoColor=ffdd54)
 ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=plastic&logo=flask&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=plastic&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=plastic&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=plastic&logo=javascript&logoColor=%23F7DF1E)
 
-# ACNH Fish Chart/Guide
+### Deployed on
 
-This program processes fish spawning data from a CSV file and provides a visual representation of when different fish spawn throughout the year. It also tracks caught fish from a separate text file and this will be used to suggest optimal months to fish during to maximize the odds of catching new fish.
+![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=plastic&logo=ubuntu&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=plastic&logo=docker&logoColor=white)
+![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=plastic&logo=nginx&logoColor=white)
+
+</div>
+
+# ACNH Fishing Tracker/Guide
+
+A simple site for tracking fish and finding the best months to fish to complete the Critterpedia!
 
 ## Current Features
 
 1. **Reads fish spawning data** from `data/fish_datasheet.csv`, extracting all fish names and their spawning months.
-2. **Creates two DataFrames:**
+2. **Creates two main DataFrames:**
    - `NH_df` → Contains fish names and their **Northern Hemisphere** spawning months.
    - `SH_df` → Contains fish names and their **Southern Hemisphere** spawning months.
-3. **Generates spawning calendar heatmaps** for both hemispheres:
+3. **Generates spawning calendar** for the chosen hemispheres:
    - Rows: Fish names
    - Columns: Months (January–December)
-   - Colored cells: Indicate spawning months
-   - Displays the charts in **Jupyter Notebook** and saves them as high-quality `.png` images.
-4. **Reads the `data/caught.txt` file**, identifying which fish have been caught:
-   - Extracts the names of caught fish from the text file.
-   - Compares them to the list of all fish from the CSV.
-   - Saves caught fish in a new array called `caught_fish`.
+   - Green cells: Indicate spawning months
+4. **Ability to input** fish that have been caught:
+   - Inputs fish data via a form
+   - Checks for the valid fishes and removes them from the *uncaught list*
 
 ## Information
 
@@ -37,18 +47,23 @@ The fish spawning data is from [this spreadsheet](https://docs.google.com/spread
 and the data for caught fish can be editted by anybody but the site that I used for mine is
 [ac-catch](https://ac-catch.com/) and [nook.lol](https://nook.lol/).
 It doesn't matter where the input data is from but it just needs to include the proper
-fish names (`blue_marlin` vs `blue marlin`)[^1] and one fish per row. The file can also
-contain other random info but if it isn't a fish that is properly named to match the fish in the datasheet, it will be ignored.
+fish names (`blue_marlin` vs `blue marlin`) and one fish per row. The file can also
+contain other random info but if it isn't a fish that is properly named to match the fish in the datasheet, it will be filtered and a fuzzy matching algorithm will be used to suggest what fishs the input may be for.
 
-[^1]: I do have it automatically replace underscores with spaces, since ac-catch uses underscores.
+See fuzzy matching below:
+<div align="center">
+   
+![Method img](https://github.com/Jukelyn/acnh-fish-chart/blob/main/static/images/get_closest_match_image_transparent.png)
+
+</div>
 
 ## Potential Next Steps
 
-- Highlight caught fish in a different color on the spawning calendar.
-- Allow filtering to display only caught fish in the heatmap.
-- Provide additional details like selling price, location, etc.
+- Highlight caught fish in a different color on the spawning calendar. (Or simply remoze them from the image instead)
+- Allow filtering to display only caught fish in the heatmap. (Depends on what I choose to do above)
+- Provide additional details like selling price, location, etc. (Instead opting for making cards with the fish info instead)
 
-### **Gameplan:**
+### **Notes for Development:**
 
 #### Step 1: Gather Fish Data
 
