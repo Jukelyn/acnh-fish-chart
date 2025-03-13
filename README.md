@@ -1,4 +1,4 @@
-### Statuses:
+### Statuses Badges
 
 ![Pylint Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/pylint.yaml/badge.svg)
 ![Docker Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/restart_docker.yaml/badge.svg)
