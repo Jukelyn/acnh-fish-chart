@@ -1,20 +1,12 @@
 ![Repo Banner](https://github.com/Jukelyn/acnh-fish-chart/blob/main/static/images/repo_banner.png?raw=true&v=2)
 
 <div align="center">
-<<<<<<< HEAD
-
-![Pylint Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/pylint.yaml/badge.svg)
-![Docker Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/restart_docker.yaml/badge.svg)
-![SFTP Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/sftp.yaml/badge.svg)
-![Super Linter Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/super-linter.yaml/badge.svg)
-=======
    
    ![Website](https://img.shields.io/website?url=https%3A%2F%2Facnh-fish.jukelyn.com&up_message=Up&down_message=Down&label=Site%20Status&cacheSeconds=10)
    ![Pylint Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/pylint.yaml/badge.svg)
    ![Docker Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/restart_docker.yaml/badge.svg)
    ![SFTP Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/sftp.yaml/badge.svg)
    ![Super Linter Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/super-linter.yaml/badge.svg)
->>>>>>> 7075e9940c81217c7a8d8479f22be9058227caf5
 
 ### Built using
 

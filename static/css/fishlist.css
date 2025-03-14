@@ -1,56 +1,55 @@
-.fish_list_container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2px;
-    justify-content: left;
-    /* Center the grid items */
-}
-
-.fish_list {
-    flex: 0 1 15%;
-    box-sizing: border-box;
-    padding: 15px;
-    border: 1px solid #ddd;
-    text-align: center;
-    width: auto;
-    height: auto;
-    margin: 5px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .fish_list_count {
     text-align: right;
-    padding-right: 10%;
+    padding-right: 5%;
 }
 
-.fish_list_count_color {
-    color: hsl(calc(120 - (120 * var(--fish-count, 0) / 80)), 100%, 50%);
-}
 
-.fishContainerHeading {
+.fish_list_container {
     display: flex;
-    align-items: center;
+    gap: 10px;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-bottom: 200px;
+}
+
+.fish-card {
+    /* display: none; update this later */
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+    padding: 16px;
+    background-color: rgb(255, 250, 227);
+    min-width: 80px;
+    width: 150px;
+    height: auto;
     justify-content: center;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+
+    flex-grow: 1;  /* Allow cards to grow and take up available space */
+    box-sizing: border-box;  /* Include padding in the element's total width/height */
 }
 
-@media (max-width: 1200px) {
-    .fish_list {
-        flex: 0 1 28%;
-        /* Adjust for medium screens */
-    }
+.fish-card img {
+    /* background-size: cover; */
+    width: 64px;
+    height: 64px;
+    align-self: center;
+    object-fit: scale-down;
+    /* object-fit: contain; */
+    /* margin-bottom: 10px; */
 }
 
-@media (max-width: 768px) {
-    .fish_list {
-        flex: 0 1 45%;
-        /* Adjust for small screens */
-    }
+.fish-card-info {
+    font-size: 10px;
+    text-align: left;
 }
 
-@media (max-width: 480px) {
-    .fish_list {
-        flex: 0 1 100%;
-        /* Adjust for extra small screens */
-    }
+.fish-card:hover {
+    transform: translateY(-5px);
 }
+

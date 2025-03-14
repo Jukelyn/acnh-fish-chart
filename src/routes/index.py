@@ -39,6 +39,6 @@ def index_route(app):
         return render_template(
             "index.html",
             fish_list=ut.all_fish_list,
-            uncaught_fish=ut.uncaught,
+            uncaught_fish=sorted(ut.uncaught, key=str.lower),
             image_url=ut.CURRENT_IMAGE
         )

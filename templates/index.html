@@ -1,15 +1,9 @@
-{% extends "base.html" %}
-
-{% block body_attributes %} style="--fish-count: {{uncaught|length }}" {% endblock %}
-{% block first_a_attributes %} class="gear settings-menu" {% endblock %}
-
-{% block second_a_attributes %} class="active"  href="/" {% endblock %}
-{% block second_a_inner %} Home {% endblock %}
-
-{% block third_a_attributes %} href="/fish-input"{% endblock %}
-{% block third_a_inner %} Input Data {% endblock %}
-
-{% block body %}
+{% extends "base.html" %} {% block body_attributes %} style="--fish-count:
+{{uncaught|length }}" {% endblock %} {% block first_a_attributes %} class="gear
+settings-menu" {% endblock %} {% block second_a_attributes %} class="active"
+href="/" {% endblock %} {% block second_a_inner %} Home {% endblock %} {% block
+third_a_attributes %} href="/fish-input"{% endblock %} {% block third_a_inner %}
+Input Data {% endblock %} {% block body %}
 <h1>ACNH Fish Spawning Calendar</h1>
 {% if image_url %}
 <div class="image_container_outer">
@@ -69,26 +63,23 @@
 <script src="{{ url_for('static', filename='js/toggleHemisphere.js')}}"></script>
 {% endif %}
 
-<div class="fishContainerHeading">
+<div style="padding-left: 2%;">
   <h2>List of All Fish:</h2>
   <button
-    onclick="toggleFishList('fish-list-container', 'all_fish_btn')"
+    onclick="toggleFishList('fish_list_container', 'all_fish_btn')"
     id="all_fish_btn"
     class="button_container"
   >
     Show
   </button>
 </div>
-<div id="fish-list-container" style="display: none">
+
+<div id="fish_list_container" style="display: none">
   <div class="fish_list_count">Total Fish: {{ fish_list|length }}</div>
-  <div class="fish_list_container">
-    {% for fish in fish_list %}
-    <div class="fish_list">{{ fish }}</div>
-    {% endfor %}
-  </div>
+  <div id="all_fish_list_container" class="fish_list_container"></div>
 </div>
 
-<div class="fishContainerHeading">
+<div style="padding-left: 2%;">
   <h2>List of Uncaught Fish:</h2>
   <button
     onclick="toggleFishList('uncaught-fish-list-container', 'uncaught_fish_btn')"
@@ -97,17 +88,80 @@
   >
     Show
   </button>
-</div> 
-<div id="uncaught-fish-list-container" style="display: none">
-  <div class="fish_list_count">
-    Total Uncaught Fish: {{ uncaught_fish|length }}
-  </div>
-  <div class="fish_list_container">
-    {% for fish in uncaught_fish %}
-    <div class="fish_list">{{ fish }}</div>
-    {% endfor %}
-  </div> <!-- Add checkbox to mark as caught and add to caught_fish list -->
 </div>
+
+<div id="uncaught-fish-list-container" style="display: none ">
+  <div class="fish_list_count">Total Uncaught Fish: {{ uncaught_fish|length }}</div>
+  <div id="uncaught_fish_list_container" class="fish_list_container"></div>
+</div>
+<div id="fish-data" data-fish-list='{{ fish_list | tojson }}' data-uncaught-fish='{{ uncaught_fish | tojson }}'></div>
+<script>
+  function fetchFishData(fishName, containerId) {
+    fetch(`/fish-info/${fishName}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          console.error(`Fish not found: ${fishName}`);
+          return;
+        }
+
+        const fishCard = document.createElement('div');
+        fishCard.classList.add('fish-card');
+
+        const fishImage = document.createElement('img');
+        fishImage.src = data.image;
+        fishImage.alt = data.name;
+
+        const fishNameElement = document.createElement('div');
+        fishNameElement.textContent = data.name;
+        fishNameElement.classList.add('fish-card-info')
+
+        const fishPrice = document.createElement('div');
+        fishPrice.innerHTML = `Price: ${data.sellPrice} Bells`;
+        fishPrice.classList.add('fish-card-info')
+
+        const fishLocation = document.createElement('div');
+        fishLocation.innerHTML = `Location: ${data.location}`;
+        fishLocation.classList.add('fish-card-info')
+
+        const fishSize = document.createElement('div');
+        fishSize.innerHTML = `Size: ${data.size}`;
+        fishSize.classList.add('fish-card-info')
+
+        const fishTime = document.createElement('div');
+        fishTime.innerHTML = `Time Available: ${data.time}`;
+        fishTime.classList.add('fish-card-info')
+
+        const nhMonths = document.createElement('div');
+        nhMonths.innerHTML = `NH Months:<br>${data.nhMonths.map((month, index) => month ? (index + 1) : '').filter(Boolean).join(', ')}`;
+        nhMonths.classList.add('fish-card-info')
+
+        const shMonths = document.createElement('div');
+        shMonths.innerHTML = `SH Months:<br>${data.shMonths.map((month, index) => month ? (index + 1) : '').filter(Boolean).join(', ')}`;
+        shMonths.classList.add('fish-card-info')
+
+        fishCard.append(fishImage, fishNameElement, fishPrice, fishLocation, fishSize, fishTime, nhMonths, shMonths);
+
+        document.getElementById(containerId).appendChild(fishCard);
+      })
+      .catch(error => {
+        console.error('Error fetching fish data:', error);
+      });
+  }
+
+  // Reusable function to fetch data for each fish in the list
+  function fetchFishForSection(fishList, containerId) {
+    fishList.forEach(fishName => {
+      fetchFishData(fishName, containerId);
+    });
+  }
+  const dataElement = document.getElementById('fish-data');
+  const allFish = JSON.parse(dataElement.getAttribute('data-fish-list'));
+  const uncaughtFish = JSON.parse(dataElement.getAttribute('data-uncaught-fish'));
+
+  fetchFishForSection(allFish, 'all_fish_list_container');
+  fetchFishForSection(uncaughtFish, 'uncaught_fish_list_container');
+</script>
 
 <script src="{{ url_for('static', filename='js/toggleFishList.js')}}"></script>
 <script>

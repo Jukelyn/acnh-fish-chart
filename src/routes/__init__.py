@@ -1,16 +1,18 @@
 """
 This module intiates the routes for the application.
 
-Functions:
+Routes:
     register_routes(app): Registers the routes for the Flask application.
     index_route(): Handles the root route ("/") for GET and POST requests.
     fish_input_route(): Renders the fish input form.
     process_route(): Processes the fish data input from the user and updates
     the fish calendar.
+    fish_info_route(): Returns fish data based on a given name.
 """
 from .index import index_route
 from .fish_input import fish_input_route
 from .process import process_route
+from .fish_info import fish_info_route
 
 
 def register_routes(app):
@@ -28,3 +30,4 @@ def register_routes(app):
     index_route(app)
     fish_input_route(app)
     process_route(app)
+    fish_info_route(app)

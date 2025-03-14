@@ -184,10 +184,12 @@ def update_calendars(nh_df: pd.DataFrame, sh_df: pd.DataFrame) -> None:
 
 update_calendars(NH_df, SH_df)
 
-all_fishes: list[str] = list(fish_df["Name"].dropna().unique())
+all_fishes: list[str] = sorted(
+    list(fish_df["Name"].dropna().unique()), key=str.lower)
 
 CURRENT_IMAGE = "static/images/NH_spawning_calendar.png"
 all_fish_list = fish_df["Name"].dropna().unique().tolist()
+all_fish_list = sorted(all_fish_list, key=str.lower)
 
 
 def get_caught_fish(fishes_caught: list[str]) -> list[str]:
@@ -219,7 +221,9 @@ def get_caught_fish(fishes_caught: list[str]) -> list[str]:
 
         caught_items.add(fish_name)
 
-    return [fish for fish in all_fishes if fish in caught_items]
+    res = [fish for fish in all_fishes if fish in caught_items]
+
+    return sorted(res, key=str.lower)
 
 
 def process_fish_data(input_fish_list=None) -> tuple:
@@ -241,9 +245,14 @@ def process_fish_data(input_fish_list=None) -> tuple:
     """
 
     caught_fish = get_caught_fish(input_fish_list or [])
+    caught_fish = sorted(caught_fish)
+
     uncaught_fish = [fish for fish in all_fishes if fish not in caught_fish]
+    uncaught_fish = sorted(uncaught_fish, key=str.lower)
+
     df_nh_uncaught = NH_df[NH_df["Name"].isin(uncaught_fish)].copy()
     df_sh_uncaught = SH_df[SH_df["Name"].isin(uncaught_fish)].copy()
+
     update_calendars(df_nh_uncaught, df_sh_uncaught)
 
     return (caught_fish, uncaught_fish, df_nh_uncaught, df_sh_uncaught)
