@@ -19,22 +19,16 @@ endblock %} {% block body %}
   <div
     style="display: flex; justify-content: center; gap: 10px; margin-top: 10px"
   >
-    <button onclick="saveAndSendData();" class="button_container">
-      Save
-    </button>
-    <!-- From Uiverse.io by Peary74 -->
+    <button onclick="saveAndSendData();" class="button_container">Save</button>
     <button onclick="clearCachedInput();" class="button_container">
       Clear Cache
     </button>
   </div>
 </div>
 <div id="suggestions-container" style="display: none">
-  <h2>You entered some invalid fish names</h2>
-  These are the invalid names:
+  <h2 id="invalid-fish-text">You entered some invalid fish names</h2>
   <ul id="invalid-fish-list"></ul>
-  Did you mean...
-  <ul id="suggestions-list"></ul>
 </div>
-<script src="{{ url_for('static', filename='js/saveAndSendData.js')}}"></script>
 <script src="{{ url_for('static', filename='js/displaySuggestions.js')}}"></script>
+<script src="{{ url_for('static', filename='js/saveAndSendData.js')}}"></script>
 {% endblock %}

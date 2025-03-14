@@ -97,7 +97,7 @@
   >
     Show
   </button>
-</div>
+</div> 
 <div id="uncaught-fish-list-container" style="display: none">
   <div class="fish_list_count">
     Total Uncaught Fish: {{ uncaught_fish|length }}
@@ -106,7 +106,7 @@
     {% for fish in uncaught_fish %}
     <div class="fish_list">{{ fish }}</div>
     {% endfor %}
-  </div>
+  </div> <!-- Add checkbox to mark as caught and add to caught_fish list -->
 </div>
 
 <script src="{{ url_for('static', filename='js/toggleFishList.js')}}"></script>

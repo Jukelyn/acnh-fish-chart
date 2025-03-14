@@ -33,6 +33,7 @@ Functions:
 from datetime import datetime
 import pandas as pd
 import seaborn as sns
+import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from thefuzz import process as fuzz_process
@@ -95,6 +96,7 @@ renamed: dict[str, str] = {  # Dict of items that need to be renamed
 }
 
 fish_df = pd.read_csv("data/fish_datasheet.csv")
+
 # Relevant columns for NH_df
 NH_columns = ["Name",
               "NH Jan", "NH Feb", "NH Mar",
@@ -112,6 +114,8 @@ SH_columns = ["Name",
               "SH Oct", "SH Nov", "SH Dec"
               ]
 SH_df = fish_df[SH_columns].copy()
+
+matplotlib.use('Agg')  # no GUI to allow updates from site
 
 
 def plot_spawning_calendar(
@@ -165,10 +169,20 @@ def plot_spawning_calendar(
     plt.close()
 
 
-plot_spawning_calendar(NH_df, "Northern Hemisphere",
-                       "NH_spawning_calendar.png")
-plot_spawning_calendar(SH_df, "Southern Hemisphere",
-                       "SH_spawning_calendar.png")
+def update_calendars(nh_df: pd.DataFrame, sh_df: pd.DataFrame) -> None:
+    """Updates the calendar images based on the fish dataframes.
+
+    Args:
+        nh_df (pd.DataFrame): Northern hemisphere fish data.
+        sh_df (pd.DataFrame): Southern hemisphere fish data.
+    """
+    plot_spawning_calendar(nh_df, "Northern Hemisphere",
+                           "NH_spawning_calendar.png")
+    plot_spawning_calendar(sh_df, "Southern Hemisphere",
+                           "SH_spawning_calendar.png")
+
+
+update_calendars(NH_df, SH_df)
 
 all_fishes: list[str] = list(fish_df["Name"].dropna().unique())
 
@@ -179,7 +193,7 @@ all_fish_list = fish_df["Name"].dropna().unique().tolist()
 def get_caught_fish(fishes_caught: list[str]) -> list[str]:
     """
     Given a list of caught fish names, returns a list of valid fish names that
-    have been caught.
+    have been caught, after filtering for other common items.
 
     Args:
         fishes_caught (list[str]): A list of strings representing the names of
@@ -230,6 +244,8 @@ def process_fish_data(input_fish_list=None) -> tuple:
     uncaught_fish = [fish for fish in all_fishes if fish not in caught_fish]
     df_nh_uncaught = NH_df[NH_df["Name"].isin(uncaught_fish)].copy()
     df_sh_uncaught = SH_df[SH_df["Name"].isin(uncaught_fish)].copy()
+    update_calendars(df_nh_uncaught, df_sh_uncaught)
+
     return (caught_fish, uncaught_fish, df_nh_uncaught, df_sh_uncaught)
 
 
