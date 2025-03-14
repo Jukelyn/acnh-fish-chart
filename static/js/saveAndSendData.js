@@ -21,7 +21,7 @@ function saveAndSendData() {
   console.log("Data saved in browser storage!");
 
   loader.style.display = "flex";
-  fetch("/process", {
+  fetch("/process", { // FIXME
     method: "POST",
     headers: {
       "Content-Type": "text/plain",

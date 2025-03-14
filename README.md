@@ -1,7 +1,7 @@
 ![Repo Banner](https://github.com/Jukelyn/acnh-fish-chart/blob/main/static/images/repo_banner.png?raw=true&v=2)
 
 <div align="center">
-   
+
 ![Pylint Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/pylint.yaml/badge.svg)
 ![Docker Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/restart_docker.yaml/badge.svg)
 ![SFTP Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/sftp.yaml/badge.svg)
@@ -39,7 +39,7 @@ A simple site for tracking fish and finding the best months to fish to complete 
    - Green cells: Indicate spawning months
 4. **Ability to input** fish that have been caught:
    - Inputs fish data via a form
-   - Checks for the valid fishes and removes them from the *uncaught list*
+   - Checks for the valid fishes and removes them from the _uncaught list_
 
 ## Information
 
@@ -51,8 +51,9 @@ fish names (`blue_marlin` vs `blue marlin`) and one fish per row. The file can a
 contain other random info but if it isn't a fish that is properly named to match the fish in the datasheet, it will be filtered and a fuzzy matching algorithm will be used to suggest what fishs the input may be for.
 
 See fuzzy matching below:
+
 <div align="center">
-   
+
 ![Method img](https://github.com/Jukelyn/acnh-fish-chart/blob/main/static/images/get_closest_match_image_transparent.png)
 
 </div>
