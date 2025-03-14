@@ -3,8 +3,11 @@
 This module defines the index page.
 """
 import logging
+import json
 from flask import render_template, request
 import src.main as ut
+
+# logging.basicConfig(level=logging.DEBUG)
 
 
 def index_route(app):
@@ -36,9 +39,14 @@ def index_route(app):
             elif button == "SH":
                 ut.CURRENT_IMAGE = "static/images/SH_spawning_calendar.png"
 
+        logging.debug("All Fish List: %s", ut.all_fish_list)
+        logging.debug("Uncaught Fish List: %s", ut.uncaught)
+
         return render_template(
             "index.html",
             fish_list=ut.all_fish_list,
-            uncaught_fish=sorted(ut.uncaught, key=str.lower),
+            uncaught_fish=ut.uncaught,
+            fish_list_json=json.dumps(ut.all_fish_list),
+            uncaught_fish_json=json.dumps(sorted(ut.uncaught, key=str.lower)),
             image_url=ut.CURRENT_IMAGE
         )

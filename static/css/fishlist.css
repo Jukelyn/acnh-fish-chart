@@ -36,6 +36,7 @@
 
 .fish-card img {
     /* background-size: cover; */
+    top: 0;
     width: 64px;
     height: 64px;
     align-self: center;
