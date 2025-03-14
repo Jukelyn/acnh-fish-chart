@@ -1,8 +1,8 @@
 function saveAndSendData() {
+  const loader = document.getElementById("loader");
   let newData = document.getElementById("fish-data").value;
   let existingData = localStorage.getItem("userInput");
   let data;
-
   if (existingData) {
     let existingDataArray = existingData.split("\n");
     let newDataArray = newData.split("\n");
@@ -20,7 +20,8 @@ function saveAndSendData() {
   localStorage.setItem("userInput", data); // Stores data in the browser
   console.log("Data saved in browser storage!");
 
-  fetch("/process", {
+  loader.style.display = "flex";
+  fetch("https:acnh.jukelyn.com/process", {
     method: "POST",
     headers: {
       "Content-Type": "text/plain",
@@ -30,6 +31,7 @@ function saveAndSendData() {
     .then((response) => response.json())
     .then((data) => {
       console.log("Flask response: ", data);
+      loader.style.display = "none";
       if (data.invalid_fish_names && data.suggestions) {
         console.log("Calling displaySuggestions");
         displaySuggestions(data.invalid_fish_names, data.suggestions);
@@ -40,10 +42,9 @@ function saveAndSendData() {
     .catch((error) => {
       // SyntaxError happens when all entries are valid... or so I hope...
       if (error instanceof SyntaxError) {
-        // ADD LOADING SCREEN HERE
         console.error("SyntaxError:", error);
         console.error("This should usually be the index page HTML");
-        // window.location.href = "/";
+        window.location.href = "/";
       } else {
         console.error("Error:", error);
       }
