@@ -21,7 +21,7 @@ function saveAndSendData() {
   console.log("Data saved in browser storage!");
 
   loader.style.display = "flex";
-  fetch("https:acnh.jukelyn.com/process", {
+  fetch("/process", {
     method: "POST",
     headers: {
       "Content-Type": "text/plain",
@@ -44,7 +44,7 @@ function saveAndSendData() {
       if (error instanceof SyntaxError) {
         console.error("SyntaxError:", error);
         console.error("This should usually be the index page HTML");
-        window.location.href = "/";
+        // window.location.href = "/";
       } else {
         console.error("Error:", error);
       }
