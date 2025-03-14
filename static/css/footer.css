@@ -1,12 +1,13 @@
 .footer {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    align-items: center; /* Vertically aligns image and text */
+    justify-content: flex-start; /* Left-aligns the content */
     width: 100%;
     background-color: #333;
     color: white;
-    text-align: center;
+    text-align: left; /* Ensures text is left-aligned */
     padding: 10px 0;
+    flex-wrap: wrap;
 }
 
 .footer a {
@@ -19,11 +20,47 @@
 
 .footer img {
     width: 28%;
-    display: inline-flex;
-    vertical-align: middle;
-    padding-left: 0;
+    margin-left: 10px;
+    display: flex;
 }
 
 .footer_text {
     margin-left: 15px;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: row;
+    }
+
+    .footer a {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .footer img {
+        width: 40%;
+        margin-left: 10px;
+    }
+
+    .footer_text {
+        margin-left: 10px;
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer img {
+        width: 20%;
+        margin-left: 10px;
+    }
+
+    .footer a {
+        margin-left: 8px;
+        /* margin-top: 8px; */
+    }
+
+    .footer_text {
+        font-size: 0.9em;
+    }
 }

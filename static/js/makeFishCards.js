@@ -84,4 +84,4 @@ console.log(allFish);
 console.log(uncaughtFish);
 
 fetchFishForSection(allFish, "all_fish_list_container");
-fetchFishForSection(uncaughtFish, "uncaught_fish_list_container");
+fetchFishForSection(uncaughtFish, "uncaught_list_container");

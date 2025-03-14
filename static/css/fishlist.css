@@ -1,16 +1,22 @@
-.fish_list_count {
+.fish_count {
     text-align: right;
     padding-right: 5%;
 }
 
-
 .fish_list_container {
     display: flex;
-    gap: 10px;
     width: 100%;
     flex-wrap: wrap;
     justify-content: flex-start;
-    padding-bottom: 200px;
+}
+
+.fish_list {
+    max-width: 100%;
+    box-sizing: border-box;
+    gap: 0px;
+    /* background-color: black; */
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
 .fish-card {

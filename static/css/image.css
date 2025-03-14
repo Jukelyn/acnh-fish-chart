@@ -26,3 +26,25 @@ img {
     padding: 10px;
     overflow-y: overlay;
 }
+
+@media (max-width: 768px) {
+    .image_container_outer {
+        width: 90%;
+        padding: 5px;
+    }
+
+    .image_container_inner {
+        height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .image_container_outer {
+        width: 95%;
+        padding: 2px;
+    }
+
+    .image_container_inner {
+        height: 300px;
+    }
+}

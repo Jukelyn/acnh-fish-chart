@@ -1,3 +1,15 @@
+.fish_list_button_group {
+    background-color: #fff;
+    border: 2px solid #23c483;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+.button_parent {
+    display: flex;
+    align-items: center;
+}
+
 .button_container {
     padding: 1.3em 2em;
     font-size: 12px;
@@ -6,9 +18,9 @@
     text-transform: uppercase;
     color: #000;
     background-color: #fff;
-    border: none;
+    border: 2px solid #23c483;
     border-radius: 45px;
-    /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
     transition: all 0.3s ease 0s;
     cursor: pointer;
     outline: none;

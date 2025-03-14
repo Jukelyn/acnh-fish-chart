@@ -63,7 +63,7 @@ Input Data {% endblock %} {% block body %}
 <script src="{{ url_for('static', filename='js/toggleHemisphere.js')}}"></script>
 {% endif %}
 
-<div style="padding-left: 2%">
+<div class="button_parent">
   <h2>List of All Fish:</h2>
   <button
     onclick="toggleFishList('fish_list_container', 'all_fish_btn')"
@@ -75,11 +75,11 @@ Input Data {% endblock %} {% block body %}
 </div>
 
 <div id="fish_list_container" style="display: none">
-  <div class="fish_list_count">Total Fish: {{ fish_list|length }}</div>
-  <div id="all_fish_list_container" class="fish_list_container"></div>
+  <div class="fish_count">Total Fish: {{ fish_list|length }}</div>
+  <div id="all_fish_list_container" class="fish_list_container fish_list"></div>
 </div>
 
-<div style="padding-left: 2%">
+<div class="button_parent">
   <h2>List of Uncaught Fish:</h2>
   <button
     onclick="toggleFishList('uncaught-fish-list-container', 'uncaught_fish_btn')"
@@ -91,11 +91,10 @@ Input Data {% endblock %} {% block body %}
 </div>
 
 <div id="uncaught-fish-list-container" style="display: none">
-  <div class="fish_list_count">
-    Total Uncaught Fish: {{ uncaught_fish|length }}
-  </div>
-  <div id="uncaught_fish_list_container" class="fish_list_container"></div>
+  <div class="fish_count">Total Uncaught Fish: {{ uncaught_fish|length }}</div>
+  <div id="uncaught_list_container" class="fish_list_container fish_list"></div>
 </div>
+
 <div
   id="fish-data"
   data-fish-list-json="{{ fish_list_json }}"

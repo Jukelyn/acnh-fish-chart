@@ -14,3 +14,37 @@ h2 {
 h3 {
     padding: 20px;
 }
+
+@media (max-width: 768px) {
+    h1 {
+        padding: 15px;
+        font-size: 1.5em;
+    }
+
+    h2 {
+        padding: 8px;
+        font-size: 1.2em;
+    }
+
+    h3 {
+        padding: 15px;
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        padding: 10px;
+        font-size: 1.3em;
+    }
+
+    h2 {
+        padding: 5px;
+        font-size: 1em;
+    }
+
+    h3 {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+}
