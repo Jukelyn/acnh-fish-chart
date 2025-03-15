@@ -5,7 +5,7 @@ function toggleFishList(containerId, buttonId) {
   if (container.style.display === "none") {
     container.style.display = "block";
     button.textContent = "Hide";
-    parentContainer.classList.add("blur_group");
+    parentContainer.classList.add("blur-group");
 
     // Get the position of the startLists element
     var rect = container.getBoundingClientRect();
@@ -17,7 +17,7 @@ function toggleFishList(containerId, buttonId) {
       behavior: "smooth",
     });
   } else {
-    parentContainer.classList.remove("blur_group");
+    parentContainer.classList.remove("blur-group");
     container.style.display = "none";
     button.textContent = "Show";
   }

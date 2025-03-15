@@ -1,21 +1,21 @@
-.blur_group {
+.blur-group {
     backdrop-filter: blur(2px);
     border-radius: 8px;
 }
 
-.fish_count {
+.fish-count {
     text-align: right;
     padding-right: 5%;
 }
 
-.fish_list_container {
+.fish-list-container {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
     justify-content: flex-start;
 }
 
-.fish_list {
+.fish-list {
     max-width: 100%;
     box-sizing: border-box;
     gap: 0px;
@@ -71,8 +71,10 @@
     text-align: center;
 }
 
-.fish-card-info-price::before { /* Bell icon */
-    content: "";  /* Required for ::before to display */
+/* Bell icon */
+.fish-card-info-price::before {
+    /* Required for ::before to display */
+    content: "";
     width: 2em;
     height: 2em;
     background: url("/static/images/bells_icon.png") no-repeat center center;
@@ -80,8 +82,10 @@
     float: left;
 }
 
-.fish-card-info-time::before { /* Time icon */
-    content: "";  /* Required for ::before to display */
+/* Time icon */
+.fish-card-info-time::before {
+    /* Required for ::before to display */
+    content: "";
     width: 2em;
     height: 2em;
     background: url("/static/images/clock_icon.svg") no-repeat center center;
@@ -90,8 +94,10 @@
     margin-right: 1px;
 }
 
-.fish-card-info-location::before { /* Location icon */
-    content: "";  /* Required for ::before to display */
+/* Location icon */
+.fish-card-info-location::before {
+    /* Required for ::before to display */
+    content: "";
     width: 2em;
     height: 2em;
     background: url("/static/images/location_icon.svg") no-repeat center center;
@@ -100,8 +106,10 @@
     margin-right: 1px;
 }
 
-.fish-card-info-size::before { /* Measure icon */
-    content: "";  /* Required for ::before to display */
+/* Measure icon */
+.fish-card-info-size::before {
+    /* Required for ::before to display */
+    content: "";
     width: 2em;
     height: 2em;
     background: url("/static/images/measure.svg") no-repeat center center;
@@ -110,8 +118,10 @@
     margin-right: 2px;
 }
 
-.fish-card-info-months::before { /* Calendar icon */
-    content: "";  /* Required for ::before to display */
+/* Calendar icon */
+.fish-card-info-months::before {
+    /* Required for ::before to display */
+    content: "";
     width: 2em;
     height: 2em;
     background: url("/static/images/calendar_icon.svg") no-repeat center center;
@@ -120,8 +130,10 @@
     margin-right: 1px;
 }
 
-.fish-card-info-rarity::before { /* Calendar icon */
-    content: "";  /* Required for ::before to display */
+/* Calendar icon */
+.fish-card-info-rarity::before {
+    /* Required for ::before to display */
+    content: "";
     width: 1.5em;
     height: 1.5em;
     background: url("/static/images/rarity_icon.svg") no-repeat center center;
