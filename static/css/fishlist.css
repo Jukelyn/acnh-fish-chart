@@ -1,6 +1,8 @@
 .fish_count {
     text-align: right;
     padding-right: 5%;
+    backdrop-filter: blur(2px);
+    border-radius: 16px;
 }
 
 .fish_list_container {
@@ -20,43 +22,97 @@
 }
 
 .fish-card {
-    /* display: none; update this later */
     display: flex;
-    /* flex-wrap: wrap; */
     flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     padding: 16px;
     background-color: rgb(255, 250, 227);
     min-width: 80px;
     width: 150px;
     height: auto;
-    justify-content: center;
-    margin: 10px;
+    margin: 0 10px 10px 10px;
     border: 1px solid #ddd;
     border-radius: 16px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 
-    flex-grow: 1;  /* Allow cards to grow and take up available space */
-    box-sizing: border-box;  /* Include padding in the element's total width/height */
+    flex-grow: 1;
+    box-sizing: border-box;
 }
 
 .fish-card img {
-    /* background-size: cover; */
     top: 0;
     width: 64px;
     height: 64px;
-    align-self: center;
-    object-fit: scale-down;
-    /* object-fit: contain; */
-    /* margin-bottom: 10px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 0;
 }
 
 .fish-card-info {
     font-size: 10px;
     text-align: left;
+    word-wrap: break-word;
+    width: 100%;
+    line-height: 2.5;
 }
 
 .fish-card:hover {
     transform: translateY(-5px);
 }
 
+.fish-card-info-name {
+    text-align: center;
+}
+
+.fish-card-info-price::before { /* Bell icon */
+    content: "";  /* Required for ::before to display */
+    width: 2em;
+    height: 2em;
+    background: url("/static/images/bells_icon.png") no-repeat center center;
+    background-size: contain;
+    float: left;
+}
+
+.fish-card-info-time::before { /* Time icon */
+    content: "";  /* Required for ::before to display */
+    width: 2em;
+    height: 2em;
+    background: url("/static/images/clock_icon.svg") no-repeat center center;
+    background-size: contain;
+    float: left;
+    margin-right: 1px;
+}
+
+.fish-card-info-location::before { /* Location icon */
+    content: "";  /* Required for ::before to display */
+    width: 2em;
+    height: 2em;
+    background: url("/static/images/location_icon.svg") no-repeat center center;
+    background-size: contain;
+    float: left;
+    margin-right: 1px;
+}
+
+.fish-card-info-size::before { /* Measure icon */
+    content: "";  /* Required for ::before to display */
+    width: 2em;
+    height: 2em;
+    background: url("/static/images/measure.svg") no-repeat center center;
+    background-size: contain;
+    float: left;
+    margin-right: 2px;
+}
+
+.fish-card-info-months::before { /* Calendar icon */
+    content: "";  /* Required for ::before to display */
+    width: 1.6em;
+    height: 1.6em;
+    background: url("/static/images/calendar_icon.svg") no-repeat center center;
+    background-size: contain;
+    float: left;
+    margin-right: 1px;
+}
