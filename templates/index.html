@@ -6,6 +6,17 @@ third_a_attributes %} href="/fish-input"{% endblock %} {% block third_a_inner %}
 Input Data {% endblock %} {% block body %}
 <h1>ACNH Fish Spawning Calendar</h1>
 {% if image_url %}
+<div id="popup" class="popup">
+  <div class="popup-content">
+    <img
+      src="{{ url_for('static', filename='images/plane_flying_slash.svg')}}"
+      alt="Plane Image"
+      class="popup-image"
+    />
+    <p>We can't fly across the globe that fast!</p>
+    <button class="popup-button" onclick="closePopup()">Dismiss</button>
+  </div>
+</div>
 <div class="image_container_outer">
   <div class="image_container_inner">
     <div class="hemisphere_selection_outer">

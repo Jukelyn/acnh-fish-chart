@@ -1,4 +1,28 @@
+function showPopup() {
+  const popup = document.getElementById("popup");
+  popup.style.display = "flex";
+
+  setTimeout(() => {
+    popup.style.display = "none";
+  }, 5000);
+}
+
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+
+let lastCallTime = 0;
+
 function toggleHemisphere() {
+  const now = Date.now();
+  if (now - lastCallTime < 1000) { // Anti-spam 1s cooldown
+    showPopup()
+    console.log("Please wait before switching hemispheres again.");
+    return;
+  }
+
+  lastCallTime = now;
+
   var imageElement = document.getElementById("image");
   var currentHemisphere = document.getElementById("hemisphereButton").value;
   var newHemisphere = currentHemisphere === "NH" ? "SH" : "NH";
@@ -28,7 +52,7 @@ function toggleHemisphere() {
   console.log("Updated Hemisphere to:", newHemisphere);
   localStorage.setItem("imageSrc", newImageSrc);
   console.log("Updated imageSrc to:", newImageSrc);
-  
+
   // Update fish cards
-  updateFishCards()
+  updateFishCards();
 }
