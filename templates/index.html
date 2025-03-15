@@ -63,44 +63,53 @@ Input Data {% endblock %} {% block body %}
 <script src="{{ url_for('static', filename='js/toggleHemisphere.js')}}"></script>
 {% endif %}
 
-<div class="button_parent">
-  <h2>List of All Fish:</h2>
-  <button
-    onclick="toggleFishList('fish_list_container', 'all_fish_btn')"
-    id="all_fish_btn"
-    class="button_container"
-  >
-    Show
-  </button>
+<div>
+  <div class="button_parent">
+    <h2>List of All Fish:</h2>
+    <button
+      onclick="toggleFishList('fish_list_container', 'all_fish_btn')"
+      id="all_fish_btn"
+      class="button_container"
+    >
+      Show
+    </button>
+  </div>
+
+  <div id="fish_list_container" style="display: none">
+    <div class="fish_count">Total Fish: {{ fish_list|length }}</div>
+    <div
+      id="all_fish_list_container"
+      class="fish_list_container fish_list"
+    ></div>
+  </div>
+
+  <div class="button_parent">
+    <h2>List of Uncaught Fish:</h2>
+    <button
+      onclick="toggleFishList('uncaught-fish-list-container', 'uncaught_fish_btn')"
+      id="uncaught_fish_btn"
+      class="button_container"
+    >
+      Show
+    </button>
+  </div>
+
+  <div id="uncaught-fish-list-container" style="display: none">
+    <div class="fish_count">
+      Total Uncaught Fish: {{ uncaught_fish|length }}
+    </div>
+    <div
+      id="uncaught_list_container"
+      class="fish_list_container fish_list"
+    ></div>
+  </div>
+
+  <div
+    id="fish-data"
+    data-fish-list-json="{{ fish_list_json }}"
+    data-uncaught-fish-json="{{ uncaught_fish_json }}"
+  ></div>
 </div>
-
-<div id="fish_list_container" style="display: none">
-  <div class="fish_count">Total Fish: {{ fish_list|length }}</div>
-  <div id="all_fish_list_container" class="fish_list_container fish_list"></div>
-</div>
-
-<div class="button_parent">
-  <h2>List of Uncaught Fish:</h2>
-  <button
-    onclick="toggleFishList('uncaught-fish-list-container', 'uncaught_fish_btn')"
-    id="uncaught_fish_btn"
-    class="button_container"
-  >
-    Show
-  </button>
-</div>
-
-<div id="uncaught-fish-list-container" style="display: none">
-  <div class="fish_count">Total Uncaught Fish: {{ uncaught_fish|length }}</div>
-  <div id="uncaught_list_container" class="fish_list_container fish_list"></div>
-</div>
-
-<div
-  id="fish-data"
-  data-fish-list-json="{{ fish_list_json }}"
-  data-uncaught-fish-json="{{ uncaught_fish_json }}"
-></div>
-
 <script src="{{ url_for('static', filename='js/makeFishCards.js')}}"></script>
 <script src="{{ url_for('static', filename='js/toggleFishList.js')}}"></script>
 <script>

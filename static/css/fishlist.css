@@ -1,8 +1,11 @@
+.blur_group {
+    backdrop-filter: blur(2px);
+    border-radius: 8px;
+}
+
 .fish_count {
     text-align: right;
     padding-right: 5%;
-    backdrop-filter: blur(2px);
-    border-radius: 16px;
 }
 
 .fish_list_container {
