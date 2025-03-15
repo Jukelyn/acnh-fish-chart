@@ -65,6 +65,7 @@ function formatMonth(month) {
 // console.log(mapMonthsToString([1, 2, 3, 4])); // "Jan - Apr"
 
 function fetchFishData(fishName, containerId) {
+  var currentHemisphere = localStorage.getItem("lastHemisphere")
   fetch(`/fish-info/${fishName}`)
     .then((response) => response.json())
     .then((data) => {
@@ -87,6 +88,10 @@ function fetchFishData(fishName, containerId) {
       const fishTime = document.createElement("div");
       fishTime.innerHTML = `${data.time}`;
       fishTime.classList.add("fish-card-info", "fish-card-info-time");
+
+      const fishRarity = document.createElement("div");
+      fishRarity.innerHTML = `Rarity: [TBA]`;
+      fishRarity.classList.add("fish-card-info", "fish-card-info-rarity");
 
       const fishPrice = document.createElement("div");
       fishPrice.innerHTML = `${data.sellPrice} Bells`;
@@ -115,10 +120,19 @@ function fetchFishData(fishName, containerId) {
           .filter(Boolean)
       )}</div>`;
       shMonths.classList.add("fish-card-info", "fish-card-info-months");
-
+      
+      if (currentHemisphere === "NH") {
+        nhMonths.style.display = "unset";
+        shMonths.style.display = "none";
+      } else {
+        nhMonths.style.display = "none";
+        shMonths.style.display = "unset";
+      }
+      
       fishCard.append(
         fishImage,
         fishNameElement,
+        fishRarity,
         fishPrice,
         fishTime,
         fishLocation,
@@ -156,8 +170,7 @@ uncaughtFish = uncaughtFish.sort((a, b) =>
   a.toLowerCase().localeCompare(b.toLowerCase())
 );
 
-console.log(allFish);
-console.log(uncaughtFish);
-
+// console.log(allFish);
+// console.log(uncaughtFish);
 fetchFishForSection(allFish, "all_fish_list_container");
 fetchFishForSection(uncaughtFish, "uncaught_list_container");

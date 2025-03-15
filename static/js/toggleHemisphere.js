@@ -25,5 +25,10 @@ function toggleHemisphere() {
   }deg)`;
 
   localStorage.setItem("lastHemisphere", newHemisphere);
+  console.log("Updated Hemisphere to:", newHemisphere);
   localStorage.setItem("imageSrc", newImageSrc);
+  console.log("Updated imageSrc to:", newImageSrc);
+  
+  // Update fish cards
+  updateFishCards()
 }

@@ -112,10 +112,20 @@
 
 .fish-card-info-months::before { /* Calendar icon */
     content: "";  /* Required for ::before to display */
-    width: 1.6em;
-    height: 1.6em;
+    width: 2em;
+    height: 2em;
     background: url("/static/images/calendar_icon.svg") no-repeat center center;
     background-size: contain;
     float: left;
     margin-right: 1px;
+}
+
+.fish-card-info-rarity::before { /* Calendar icon */
+    content: "";  /* Required for ::before to display */
+    width: 1.5em;
+    height: 1.5em;
+    background: url("/static/images/rarity_icon.svg") no-repeat center center;
+    background-size: contain;
+    float: left;
+    margin-right: 3px;
 }
