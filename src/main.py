@@ -233,7 +233,7 @@ def process_fish_data(input_fish_list=None) -> tuple:
     Hemisphere (SH).
 
     Args:
-        input_fish_list (list, optional): A list of fish names that have been
+        input_fish-list (list, optional): A list of fish names that have been
         caught. Defaults to None.
 
     Returns:
