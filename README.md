@@ -59,11 +59,6 @@ See fuzzy matching below:
 
 </div>
 
-## Potential Next Steps
-
-- Highlight caught fish in a different color on the spawning calendar. (Or simply remoze them from the image instead)
-- Allow filtering to display only caught fish in the heatmap. (Depends on what I choose to do above)
-- Provide additional details like selling price, location, etc. (Instead opting for making cards with the fish info instead)
 
 ### **Notes for Development:**
 
