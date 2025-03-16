@@ -1,0 +1,76 @@
+# https://www.youtube.com/watch?v=Q-YA_dA8C20&t=653s
+site_name: ACNH Fish Spawning Calendar
+
+nav:
+  - Home: index.md
+  - API Reference:
+      - Run: run.md
+      - Source Code:
+        - main: src/main.md
+        - Routes:
+            - fish_Info: src/routes/fish_info.md
+            - fish_input: src/routes/fish_input.md
+            - index: src/routes/index.md
+            - process: src/routes/process.md
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.footer
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  language: en
+  palette:
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+      primary: teal
+      accent: blue
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+      primary: red
+      accent: blue
+
+plugins:
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [.]  # Ensures Python modules inside src are accessible
+          options:
+            members_order: source
+  - search
+
+markdown_extensions:
+  - pymdownx.highlight:
+      auto_title: true
+      anchor_linenums: true
+      line_spans: __span
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - attr_list
+  - footnotes
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/james-willett
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/TheJamesWillett
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/willettjames/
+
+copyright: |
+  &copy; 2024 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0"  target="_blank" rel="noopener">CC BY-NC-ND 4.0</a>

@@ -7,9 +7,9 @@ filtering data, and finding the closest matches for user input.
 
 Functions:
     plot_spawning_calendar(dataframe: pd.DataFrame, title: str, filename: str)
-    -> None:
-        Creates a plot for the fish in a calendar style and saves it as an
-        image.
+        -> None:
+            Creates a plot for the fish in a calendar style and saves it as an
+            image.
 
     get_caught_fish(fishes_caught: list[str]) -> list[str]:
         Returns a list of caught fish names based on the input list of fish
@@ -121,7 +121,8 @@ matplotlib.use('Agg')  # no GUI to allow updates from site
 def plot_spawning_calendar(
     dataframe: pd.DataFrame, title: str, filename: str
 ) -> None:
-    """Creates a plot for the fish in a calendar style and saves it as image.
+    """
+    Creates a plot for the fish in a calendar style and saves it as image.
 
     Args:
         dataframe (pd.DataFrame): The dataframe with the data for the plot.
@@ -129,7 +130,7 @@ def plot_spawning_calendar(
         filename (str): The filename of the saved image.
 
     Returns:
-        None
+        (None): This just creates the image files given the fish data.
     """
 
     plt.figure(figsize=(12, len(dataframe) * 0.5))
@@ -175,6 +176,9 @@ def update_calendars(nh_df: pd.DataFrame, sh_df: pd.DataFrame) -> None:
     Args:
         nh_df (pd.DataFrame): Northern hemisphere fish data.
         sh_df (pd.DataFrame): Southern hemisphere fish data.
+
+    Returns:
+        (None): This just calls plot_spawning_calendar() for both hemispheres.
     """
     plot_spawning_calendar(nh_df, "Northern Hemisphere",
                            "NH_spawning_calendar.png")
@@ -199,12 +203,12 @@ def get_caught_fish(fishes_caught: list[str]) -> list[str]:
 
     Args:
         fishes_caught (list[str]): A list of strings representing the names of
-        caught fish.
+                                   caught fish.
 
     Returns:
-        list[str]: A list of valid fish names that have been caught. If the
-        input list is empty or the first element is empty, returns an empty
-        list.
+        (list[str]): Valid fish names that have been caught. If the input list
+                     is empty or the first element is empty, returns an empty 
+                     list.
     """
 
     try:
@@ -226,26 +230,27 @@ def get_caught_fish(fishes_caught: list[str]) -> list[str]:
     return sorted(res, key=str.lower)
 
 
-def process_fish_data(input_fish_list=None) -> tuple:
+def process_fish_data(input_fish_list=None) -> tuple[list, list, pd.Dataframe,
+                                                     pd.Dataframe]:
     """
     Processes fish data to determine caught and uncaught fish, and returns
     dataframes for uncaught fish in the Northern Hemisphere (NH) and Southern
     Hemisphere (SH).
 
     Args:
-        input_fish-list (list, optional): A list of fish names that have been
-        caught. Defaults to None.
+        input_fish_list (list, optional): A list of fish names that have been
+                                          caught. Defaults to None.
 
     Returns:
-        tuple: A tuple containing:
-            - caught_fish (list): List of caught fish names.
-            - uncaught_fish (list): List of uncaught fish names.
-            - df_nh_uncaught (DataFrame): DataFrame of uncaught fish in NH.
-            - df_sh_uncaught (DataFrame): DataFrame of uncaught fish in SH.
+        (tuple(list, list, pd.Dataframe, pd.Dataframe)):
+            caught_fish (list): Caught fish names.
+            uncaught_fish (list): Uncaught fish names.
+            df_nh_uncaught (DataFrame): Uncaught fish in NH.
+            df_sh_uncaught (DataFrame): Uncaught fish in SH.
     """
 
     caught_fish = get_caught_fish(input_fish_list or [])
-    caught_fish = sorted(caught_fish)
+    caught_fish = sorted(caught_fish, key=str.lower)
 
     uncaught_fish = [fish for fish in all_fishes if fish not in caught_fish]
     uncaught_fish = sorted(uncaught_fish, key=str.lower)
@@ -271,8 +276,8 @@ def filter_data(arr: list[str], filter_by: list[str]) -> list[str]:
         filter_by (list[str]): The list of strings to filter out from `arr`.
 
     Returns:
-        list[str]: A new list with elements from `arr` that are not in
-                   `filter_by`, ignoring case.
+        (list[str]): A new list with elements from `arr` that are not in
+                     `filter_by`, ignoring case.
     """
 
     arr = [renamed.get(insect, insect)
@@ -294,17 +299,18 @@ def get_closest_match(user_in: str, threshold: int = 80) -> list[str]:
     provided user input string. It uses two methods to find matches:
     1. Direct substring matching.
     2. Fuzzy matching with a specified threshold.
+
     Args:
         user_in (str): The input string provided by the user to
                        search for matching fish names.
         threshold (int, optional): The minimum score for fuzzy
                                    matching to consider a match.
                                    Defaults to 80.
+    
     Returns:
-        list[str]: A list of fish names that closely match the user input.
-                   The list is determined based on the highest matching
-                   scores from either direct substring matching or fuzzy
-                   matching.
+        (list[str]): Fish names that closely match the user input. The list is
+                     determined based on the highest matching scores from
+                     either direct substring matching or fuzzy matching.
     """
 
     possible_matches = [
@@ -353,8 +359,8 @@ def get_problems(input_fish: list[str]) -> set[str]:
         input_fish (list[str]): A list of fish names to be checked.
 
     Returns:
-        set[str]: A set of fish names that are not found in the predefined
-        list of all fishes.
+        (set[str]): Fish names that are not found in the predefined
+                    list of all fishes.
     """
 
     problem_children = set()
