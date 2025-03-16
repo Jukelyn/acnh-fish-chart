@@ -41,3 +41,5 @@ app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 
 
 register_routes(app)
+
+print("test pylint trigger")
