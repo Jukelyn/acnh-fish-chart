@@ -230,8 +230,8 @@ def get_caught_fish(fishes_caught: list[str]) -> list[str]:
     return sorted(res, key=str.lower)
 
 
-def process_fish_data(input_fish_list=None) -> tuple[list, list, pd.Dataframe,
-                                                     pd.Dataframe]:
+def process_fish_data(input_fish_list=None) -> tuple[list, list, pd.DataFrame,
+                                                     pd.DataFrame]:
     """
     Processes fish data to determine caught and uncaught fish, and returns
     dataframes for uncaught fish in the Northern Hemisphere (NH) and Southern
