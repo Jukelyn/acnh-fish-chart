@@ -59,6 +59,45 @@ See fuzzy matching below:
 
 </div>
 
+## Local Development
+
+The site is written using Flask and mostly HTML and JS. In order to host a local version of the site, these are the reccomended instructions:
+
+1. Have Python and pip installed
+2. Clone the repo
+
+   ```bash
+   git clone https://github.com/Jukelyn/acnh-fish-chart.git
+
+   ```
+3. Enter the repo and create a virtual enviornment (venv)
+
+   ```
+   cd acnh-fish-chart && python3 -m venv venv
+
+   ```
+4. Activate the venv
+
+   POSIX bash/zsh:
+   ```bash
+   source venv/bin/activate
+   ```
+   Windows:
+   ```cmd
+   C:\> <venv>\Scripts\activate.bat
+   PS C:\> <venv>\Scripts\Activate.ps1 // Don't do this though, why are you using PowerShell?
+   ```
+5. Install dependencies
+   ```bash
+   pip install -r requirements.txt
+   ```
+6. Host a local server
+   ```bash
+   python run.py
+   ```
+The site should now be available on 127.0.0.1:5000 (or whatever other IP/port you set in `src/__init__.py`)
+
+<hr />
 
 ### **Notes for Development:**
 
