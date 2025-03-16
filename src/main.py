@@ -207,7 +207,7 @@ def get_caught_fish(fishes_caught: list[str]) -> list[str]:
 
     Returns:
         (list[str]): Valid fish names that have been caught. If the input list
-                     is empty or the first element is empty, returns an empty 
+                     is empty or the first element is empty, returns an empty
                      list.
     """
 
@@ -306,7 +306,7 @@ def get_closest_match(user_in: str, threshold: int = 80) -> list[str]:
         threshold (int, optional): The minimum score for fuzzy
                                    matching to consider a match.
                                    Defaults to 80.
-    
+
     Returns:
         (list[str]): Fish names that closely match the user input. The list is
                      determined based on the highest matching scores from
