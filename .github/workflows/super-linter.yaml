@@ -4,8 +4,23 @@ name: Lint Code Base
 on:
   push:
     branches: ["main"]
+    paths:
+      - 'src/**'
+      - 'static/**'
+      - 'templates/**'
+      - 'data/**'
+      - 'docker-compose.yaml'
+      - 'Dockerfile'
+
   pull_request:
     branches: ["main"]
+    paths:
+      - 'src/**'
+      - 'static/**'
+      - 'templates/**'
+      - 'data/**'
+      - 'docker-compose.yaml'
+      - 'Dockerfile'
 
 permissions:
   contents: read
