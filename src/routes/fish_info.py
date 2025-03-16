@@ -3,14 +3,14 @@
 This module defines the fish information retrieval routes.
 """
 import json
-from flask import jsonify
+from flask import jsonify, Response
 
 # Load fish data from a JSON file
 with open("data/fish_info.json", "r", encoding="utf-8") as file:
     fish_list = {fish["name"].lower(): fish for fish in json.load(file)}
 
 
-def get_fish_info(fish_name: str) -> json:
+def get_fish_info(fish_name: str) -> Response:
     """
     Returns all specific information about the given fish.
 
@@ -18,7 +18,7 @@ def get_fish_info(fish_name: str) -> json:
         fish_name (str): Fish to be queried.
 
     Returns:
-        (json): Json representation of the fish data.
+        (Response): Json representation of the fish data.
     """
     fish_name = fish_name.lower()
 

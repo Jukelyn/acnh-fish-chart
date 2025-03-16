@@ -8,7 +8,7 @@ nav:
       - Source Code:
         - main: src/main.md
         - Routes:
-            - fish_Info: src/routes/fish_info.md
+            - fish_info: src/routes/fish_info.md
             - fish_input: src/routes/fish_input.md
             - index: src/routes/index.md
             - process: src/routes/process.md
