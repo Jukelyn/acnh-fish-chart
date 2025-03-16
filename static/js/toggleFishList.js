@@ -1,7 +1,7 @@
 function toggleFishList(containerId, buttonId) {
   var container = document.getElementById(containerId);
   var button = document.getElementById(buttonId);
-  var parentContainer = container.parentElement;
+  var parentContainer = document.getElementById("lists_parent_container");
   if (container.style.display === "none") {
     container.style.display = "block";
     button.textContent = "Hide";

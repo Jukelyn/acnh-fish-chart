@@ -74,7 +74,7 @@ Input Data {% endblock %} {% block body %}
 <script src="{{ url_for('static', filename='js/toggleHemisphere.js')}}"></script>
 {% endif %}
 
-<div>
+<div id="lists_parent_container">
   <div class="button_parent">
     <h2>List of All Fish:</h2>
     <button
@@ -121,6 +121,7 @@ Input Data {% endblock %} {% block body %}
     data-uncaught-fish-json="{{ uncaught_fish_json }}"
   ></div>
 </div>
+
 <script src="{{ url_for('static', filename='js/makeFishCards.js')}}"></script>
 <script src="{{ url_for('static', filename='js/updateFishCards.js')}}"></script>
 <script src="{{ url_for('static', filename='js/toggleFishList.js')}}"></script>

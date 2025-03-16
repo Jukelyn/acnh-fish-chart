@@ -9,6 +9,7 @@
     display: flex;
     align-items: center;
     width: fit-content;
+    margin-left: 12%;
 }
 
 .button_container {
@@ -33,4 +34,16 @@
     color: #fff;
     box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
     transform: translateY(-7px);
+}
+
+@media (max-width: 768px) {
+    .button_parent {
+        margin-left: 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .button_parent {
+        margin-left: 2%;
+    }
 }

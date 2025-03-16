@@ -363,10 +363,4 @@ def get_problems(input_fish: list[str]) -> set[str]:
                     list of all fishes.
     """
 
-    problem_children = set()
-
-    for item in input_fish:
-        if item not in all_fishes:
-            problem_children.add(item)
-
-    return problem_children
+    return {item for item in input_fish if item not in all_fishes}
