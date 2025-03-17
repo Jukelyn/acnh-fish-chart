@@ -47,7 +47,7 @@ function saveAndSendData() {
       }
     })
     .then((data) => {
-      console.log("Flask response: ", data);
+      // console.log("Flask response: ", data);
 
       if (data.invalid_fish_names && data.suggestions) {
         console.log("Calling displaySuggestions");

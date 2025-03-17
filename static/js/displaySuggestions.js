@@ -155,8 +155,8 @@ function displaySuggestions(invalidFish, suggestions) {
 
   // Only show the suggestions container if there are invalid fish to display
   if (anyInvalidFishDisplayed) {
-    suggestionsContainer.style.display = "unset";
-    invalidFishText.style.display = "unset";
+    suggestionsContainer.style.display = "flex";
+    invalidFishText.style.display = "block";
   } else {
     localStorage.removeItem("userInput");
     suggestionsContainer.style.display = "none";

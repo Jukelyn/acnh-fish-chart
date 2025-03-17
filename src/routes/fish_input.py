@@ -21,7 +21,6 @@ def fish_input_route(app):
         """
         Serves the fish input page.
         """
-
         if request.method == "POST":
             print("POST hit.")
             input_data = request.form.get("fish-data")
@@ -35,17 +34,22 @@ def fish_input_route(app):
             input_list = [fish.strip().replace("_", " ").lower()
                           for fish in input_data.split("\n") if fish.strip()]
 
-            input_list = [ut.renamed.get(fish, fish)
-                          for fish in input_list]
+            input_list = [ut.renamed.get(fish, fish) for fish in input_list]
 
             problems = ut.get_problems(input_list)
             if problems:
-                suggestions = {prob: ut.get_closest_match(
-                    prob) for prob in problems}
+                suggestions: dict[str, list[str]] = {
+                    prob: ut.get_closest_match(prob) for prob in problems
+                }
+
                 logging.debug("Invalid fish names found: %s", problems)
                 logging.debug("Suggested names: %s", suggestions)
-                invalid_fish_names = list(problems)
-                suggestions_list = [suggestions[fish] for fish in problems]
+
+                invalid_fish_names: list[str] = list(problems)
+                suggestions_list: list[list[str]] = [
+                    suggestions[fish] for fish in problems
+                ]
+
                 return jsonify({
                     "invalid_fish_names": invalid_fish_names,
                     "suggestions": suggestions_list
