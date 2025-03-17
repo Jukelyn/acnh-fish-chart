@@ -1,10 +1,13 @@
 function saveAndSendData() {
   const loader = document.getElementById("loader");
-  let newData = document.getElementById("fish-data").value;
+  // Inputted fish
+  let newData = document.getElementById("fish-data").value.toLowerCase();
+  // Existing fish
   let existingData = localStorage.getItem("userInput");
   let data;
   if (existingData) {
-    let existingDataArray = existingData.split("\n");
+    // Convert existing data to lowercase
+    let existingDataArray = existingData.toLowerCase().split("\n");
     let newDataArray = newData.split("\n");
     let combinedDataArray = [
       ...new Set([...existingDataArray, ...newDataArray]),
@@ -13,20 +16,23 @@ function saveAndSendData() {
   } else {
     // Prevent adding duplicate entries if no data exists
     let newDataArray = newData.split("\n");
-    let uniqueNewData = newDataArray.filter((entry, index, self) => self.indexOf(entry) === index);
+    let uniqueNewData = newDataArray.filter(
+      (entry, index, self) => self.indexOf(entry) === index
+    );
     data = uniqueNewData.join("\n");
   }
 
   localStorage.setItem("userInput", data); // Stores data in the browser
-  // console.log("Data saved in browser storage!");
+  console.log("Data saved in browser storage!");
 
   loader.style.display = "flex";
-  fetch("https://acnh.jukelyn.com/process", { // FIXME
+  fetch("/fish-input", {
+    // FIXME
     method: "POST",
     headers: {
       "Content-Type": "text/plain",
     },
-    body: data,
+    body: data, // fish data, split by newlines
   })
     .then((response) => response.json())
     .then((data) => {
