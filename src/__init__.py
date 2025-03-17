@@ -26,7 +26,6 @@ import os
 from flask import Flask
 from flask_cors import CORS
 from dotenv import load_dotenv
-from flask_socketio import SocketIO
 from src.routes import register_routes
 
 load_dotenv()
@@ -42,12 +41,8 @@ CORS(app, origins=["http://127.0.0.1:5000",
                    "http://localhost:5000"])
 
 # Setup Flask-SocketIO with CORS support
-socketio = SocketIO(app, cors_allowed_origins=[
-                    "http://127.0.0.1:5000", 
-                    "https://acnh.jukelyn.com",
-                    "http://localhost:5000"])
 
 app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 
 
-register_routes(app, socketio)
+register_routes(app)
