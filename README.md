@@ -96,6 +96,18 @@ The site is written using Flask and mostly HTML and JS. In order to host a local
    ```bash
    python run.py
    ```
-The site should now be available on 127.0.0.1:5000 (or whatever other IP/port you set in `src/__init__.py`)
+The site should now be available on `127.0.0.1:5000` (or whatever other IP/port you set in `src/__init__.py`)
+
+<hr />
+
+## Docker Deployment
+
+1. Follow the previous steps 1 to 5.
+2. [Build](https://docs.docker.com/build/concepts/dockerfile/#building) the docker image from the provided Dockerfile. (You can also just do step 3, it will build it for you)
+3. Change the `docker-compose.yaml` file to use the networks that you have defined, or remove the network fields if you want to have it create it's own automatically.
+4. Add port to forward, if needed. If you are using a reverse proxy on the same server, you don't need to do this, just forward your (sub)domain to the container on the port directly. (Default: 5000)
+- If you change the port, make sure to change it in `src/__init__.py` as well as `Dockerfile`.
+6. Run `docker compose up -d`
+7. Navigate to the IP:port or (sub)domain that you assigned in your reverse proxy.
 
 <hr />
