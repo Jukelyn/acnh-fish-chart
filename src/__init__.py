@@ -31,16 +31,21 @@ from src.routes import register_routes
 
 load_dotenv()
 
-socketio = SocketIO()
+
 app = Flask(__name__,
             template_folder="../templates",
             static_folder="../static")
+
+socketio = SocketIO(app, cors_allowed_origins=["http://127.0.0.1:5000",
+                                               "http://localhost:5000",
+                                               "https://acnh.jukelyn.com"])
 
 
 # Update the CORS setup to allow the origin you're using:
 CORS(app, resources={
      r"/*": {"origins": ["https://acnh.jukelyn.com",
-                         "http://127.0.0.1:5000"]}})
+                         "http://127.0.0.1:5000",
+                         "http://localhost:5000"]}})
 
 app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 
