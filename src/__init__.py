@@ -36,16 +36,12 @@ app = Flask(__name__,
             template_folder="../templates",
             static_folder="../static")
 
-socketio = SocketIO(app, cors_allowed_origins=["http://127.0.0.1:5000",
-                                               "http://localhost:5000",
-                                               "https://acnh.jukelyn.com"])
+# Enable CORS for all routes and WebSocket connections
+CORS(app, origins=["http://127.0.0.1:5000", "http://localhost:5000"])
 
-
-# Update the CORS setup to allow the origin you're using:
-CORS(app, resources={
-     r"/*": {"origins": ["https://acnh.jukelyn.com",
-                         "http://127.0.0.1:5000",
-                         "http://localhost:5000"]}})
+# Setup Flask-SocketIO with CORS support
+socketio = SocketIO(app, cors_allowed_origins=[
+                    "http://127.0.0.1:5000", "http://localhost:5000"])
 
 app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 
