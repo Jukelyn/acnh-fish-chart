@@ -26,10 +26,12 @@ import os
 from flask import Flask
 from flask_cors import CORS
 from dotenv import load_dotenv
+from flask_socketio import SocketIO
 from src.routes import register_routes
 
 load_dotenv()
 
+socketio = SocketIO()
 app = Flask(__name__,
             template_folder="../templates",
             static_folder="../static")
@@ -43,4 +45,4 @@ CORS(app, resources={
 app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 
 
-register_routes(app)
+register_routes(app, socketio)

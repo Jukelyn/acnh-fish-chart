@@ -12,6 +12,8 @@ Usage:
     Run this script directly to start the application server.
 """
 from src import app
+from src import socketio
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
+    socketio.run(app, debug=True)

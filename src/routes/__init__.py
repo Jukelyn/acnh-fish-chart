@@ -14,7 +14,7 @@ from .fish_input import fish_input_route
 from .index import index_route
 
 
-def register_routes(app):
+def register_routes(app, socketio):
     """
     Register routes for the Flask application.
 
@@ -27,5 +27,5 @@ def register_routes(app):
         routes.process: Processes the fish data input and updates the calendar.
     """
     index_route(app)
-    fish_input_route(app)
+    fish_input_route(app, socketio)
     fish_info_route(app)
