@@ -24,6 +24,17 @@
 ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=plastic&logo=nginx&logoColor=white)
 
 </div>
+<hr />
+
+## Table of Contents
+
+- [ACNH Fishing Tracker/Guide](#acnh-fishing-trackerguide)
+- [Current Features](#current-features)
+- [Information](#information)
+- [Local Development](#local-development)
+- [Docker Deployment](#docker-deployment)
+
+<hr />
 
 # ACNH Fishing Tracker/Guide
 
@@ -85,8 +96,8 @@ The site is written using Flask and mostly HTML and JS. In order to host a local
    ```
    Windows:
    ```cmd
-   C:\> <venv>\Scripts\activate.bat
-   PS C:\> <venv>\Scripts\Activate.ps1 // Don't do this though, why are you using PowerShell?
+   C:\> venv\Scripts\activate.bat
+   PS C:\> venv\Scripts\Activate.ps1 // Don't do this though, why are you using PowerShell?
    ```
 5. Install dependencies
    ```bash
@@ -96,53 +107,18 @@ The site is written using Flask and mostly HTML and JS. In order to host a local
    ```bash
    python run.py
    ```
-The site should now be available on 127.0.0.1:5000 (or whatever other IP/port you set in `src/__init__.py`)
+The site should now be available on `127.0.0.1:5000` (or whatever other IP/port you set in `src/__init__.py`)
 
 <hr />
 
-### **Notes for Development:**
+## Docker Deployment
 
-#### Step 1: Gather Fish Data
+1. Follow the previous steps 1 to 5.
+2. [Build](https://docs.docker.com/build/concepts/dockerfile/#building) the docker image from the provided Dockerfile. (You can also just do step 3, it will build it for you)
+3. Change the `docker-compose.yaml` file to use the networks that you have defined, or remove the network fields if you want to have it create it's own automatically.
+4. Add port to forward, if needed. If you are using a reverse proxy on the same server, you don't need to do this, just forward your (sub)domain to the container on the port directly. (Default: 5000)
+- If you change the port, make sure to change it in `src/__init__.py` as well as `Dockerfile`.
+6. Run `docker compose up -d`
+7. Navigate to the IP:port or (sub)domain that you assigned in your reverse proxy.
 
-1. **Make a List of All Fish Caught**
-
-   - Check the in-game Critterpedia or use nook.lol or another site.
-   - Input the data.
-
-2. **Get a Full Fish Availability Chart**
-   - Make a monthly fish availability table for each hemisphere.
-   - Ensure it lists which fish spawn each month.
-
----
-
-#### Step 2: Identify the Best Next Fishing Month
-
-1. **Compare Caught Fish Against Each Month**
-
-   - Count how many **new (uncaught)** fish appear in each month.
-   - Count how many **previously caught** fish also appear.
-
-2. **Choose the Month with the Highest New-to-Old Ratio**
-   - Prioritize months where **many new fish spawn** and **fewer caught fish overlap**.
-   - Avoid months where most fish are ones you've already caught.
-
----
-
-#### Step 3: Plan a Sequence of Months
-
-1. After selecting the best next month, repeat **Step 2** to find the next best month.
-2. Continue until you have caught all fish with minimal duplication.
-
----
-
-Example Scenario
-
-- You’ve caught **50 out of 80 fish** in the Northern Hemisphere.
-- Checking a **monthly fish chart**, you find:
-  - **June:** 15 new fish, but 35 duplicates.
-  - **October:** 12 new fish, but only 20 duplicates.
-- **October is a better choice** because it minimizes duplicate catches.
-
----
-
-- Sort by the best ratio of new vs. previously caught fish.
+<hr />
