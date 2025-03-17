@@ -18,10 +18,10 @@ function saveAndSendData() {
   }
 
   localStorage.setItem("userInput", data); // Stores data in the browser
-  console.log("Data saved in browser storage!");
+  // console.log("Data saved in browser storage!");
 
   loader.style.display = "flex";
-  fetch("/process", { // FIXME
+  fetch("https://acnh.jukelyn.com/process", { // FIXME
     method: "POST",
     headers: {
       "Content-Type": "text/plain",

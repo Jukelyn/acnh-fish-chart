@@ -34,7 +34,10 @@ app = Flask(__name__,
             template_folder="../templates",
             static_folder="../static")
 
-CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5000"}})
+
+# Update the CORS setup to allow the origin you're using:
+CORS(app, resources={
+     r"/*": {"origins": ["https://acnh.jukelyn.com", "http://127.0.0.1:5000"]}})
 
 app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 
