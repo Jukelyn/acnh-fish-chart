@@ -24,6 +24,17 @@
 ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=plastic&logo=nginx&logoColor=white)
 
 </div>
+<hr />
+
+## Table of Contents
+
+- [ACNH Fishing Tracker/Guide](#acnh-fishing-trackerguide)
+- [Current Features](#current-features)
+- [Information](#information)
+- [Local Development](#local-development)
+- [Docker Deployment](#docker-deployment)
+
+<hr />
 
 # ACNH Fishing Tracker/Guide
 
