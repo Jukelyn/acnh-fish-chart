@@ -6,6 +6,8 @@ block second_a_attributes %} href="/" {% endblock %} {% block second_a_inner %}
 Home {% endblock %} {% block third_a_attributes %} class="active"
 href="/fish-input"{% endblock %} {% block third_a_inner %} Input Data {%
 endblock %} {% block body %}
+<script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+
 <h1>Enter the fish you have caught (one per line):</h1>
 <div class="flex-wrap display: flex-wrap">
   <textarea
