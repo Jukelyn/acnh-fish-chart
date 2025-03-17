@@ -37,7 +37,9 @@ def get_fish_info(fish_name: str) -> Response:
             "shMonths": fish_data["shMonths"]
         })
 
-    return jsonify({"error": "Fish not found"}), 404
+    response: Response = jsonify({"error": "Fish not found"})
+    response.status_code = 404  # Set status code explicitly
+    return response
 
 
 def fish_info_route(app):

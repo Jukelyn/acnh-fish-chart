@@ -40,7 +40,36 @@
     transition: transform 0.3s ease;
     flex-grow: 1;
     box-sizing: border-box;
+    position: relative; /* Allows absolute positioning of the button */
 }
+
+.fish-card-button {
+    position: absolute;
+    top: 8px; /* Adjust position */
+    right: 8px; /* Adjust position */
+    padding: 6px 6px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0; /* Initially hidden */
+    transform: scale(0);
+}
+
+.fish-card-button svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+    transition: transform 0.2s ease;
+}
+
+.fish-card:hover .fish-card-button {
+    opacity: 1;
+    transform: scale(1); /* Make the button appear with a scaling effect */
+}
+
 
 .fish-card img {
     top: 0;
@@ -63,6 +92,10 @@
 
 .fish-card:hover {
     transform: translateY(-5px);
+}
+
+.fish-card:hover .fish-card-button {
+    opacity: 1; /* Show button when card is hovered */
 }
 
 .fish-card-info-name {

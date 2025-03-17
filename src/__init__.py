@@ -34,7 +34,6 @@ app = Flask(__name__,
             template_folder="../templates",
             static_folder="../static")
 
-# Allow only local dev server
 CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5000"}})
 
 app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")

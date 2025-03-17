@@ -121,9 +121,9 @@ Input Data {% endblock %} {% block body %}
     data-uncaught-fish-json="{{ uncaught_fish_json }}"
   ></div>
 </div>
-
 <script src="{{ url_for('static', filename='js/makeFishCards.js')}}"></script>
 <script src="{{ url_for('static', filename='js/updateFishCards.js')}}"></script>
+<script src="{{ url_for('static', filename='js/checkClickedFish.js')}}"></script>
 <script src="{{ url_for('static', filename='js/toggleFishList.js')}}"></script>
 <script>
   // Spin entire site when hemisphere is changed if spin is enabled

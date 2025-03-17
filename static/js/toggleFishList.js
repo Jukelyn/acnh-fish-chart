@@ -9,7 +9,7 @@ function toggleFishList(containerId, buttonId) {
 
     // Get the position of the startLists element
     var rect = container.getBoundingClientRect();
-    
+
     // 10% above
     var offset = window.scrollY + rect.top - window.innerHeight * 0.1;
     window.scrollTo({

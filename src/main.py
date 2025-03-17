@@ -31,6 +31,7 @@ Functions:
         list of all fish names.
 """
 from datetime import datetime
+from typing import Optional
 import pandas as pd
 import seaborn as sns
 import matplotlib
@@ -39,24 +40,25 @@ from matplotlib.lines import Line2D
 from thefuzz import process as fuzz_process
 # from unidecode import unidecode  # For Music Filtering
 
-sea_creatures = pd.read_csv("data/sea_creatures_datasheet.csv")
-sea_creatures = list(sea_creatures["Name"].copy())
+sea_creatures_df: pd.DataFrame = pd.read_csv(
+    "data/sea_creatures_datasheet.csv")
+sea_creatures: list[str] = list(sea_creatures_df["Name"].copy())
 
-insects = pd.read_csv("data/insects_datasheet.csv")
-insects = list(insects["Name"].copy())
+insects_df: pd.DataFrame = pd.read_csv("data/insects_datasheet.csv")
+insects: list[str] = list(insects_df["Name"].copy())
 
-fossils = pd.read_csv("data/fossils_datasheet.csv")
-fossils = list(fossils["Name"].copy())
+fossils_df: pd.DataFrame = pd.read_csv("data/fossils_datasheet.csv")
+fossils: list[str] = list(fossils_df["Name"].copy())
 
-gyroids = pd.read_csv("data/gyroids_datasheet.csv")
-gyroids = list(gyroids["Name"].copy())
+gyroids_df: pd.DataFrame = pd.read_csv("data/gyroids_datasheet.csv")
+gyroids: list[str] = list(gyroids_df["Name"].copy())
 
-artwork = pd.read_csv("data/artwork_datasheet.csv")
-artwork = list(set(artwork["Name"].copy()))
+artwork_df: pd.DataFrame = pd.read_csv("data/artwork_datasheet.csv")
+artwork: list[str] = list(set(artwork_df["Name"].copy()))
 
 # Music Filtering
-# music = pd.read_csv("data/music_datasheet.csv")
-# music = list(music["Name"].copy())
+# music: pd.DataFrame = pd.read_csv("data/music_datasheet.csv")
+# music: list[str] = list(music["Name"].copy())
 # find_these_songs = [
 #     'cafe_kk',
 #     'kk_etude',
@@ -192,8 +194,8 @@ all_fishes: list[str] = sorted(
     list(fish_df["Name"].dropna().unique()), key=str.lower)
 
 CURRENT_IMAGE = "static/images/NH_spawning_calendar.png"
-all_fish_list = fish_df["Name"].dropna().unique().tolist()
-all_fish_list = sorted(all_fish_list, key=str.lower)
+all_fish_list_unsorted: str = fish_df["Name"].dropna().unique().tolist()
+all_fish_list: list[str] = sorted(all_fish_list_unsorted, key=str.lower)
 
 
 def get_caught_fish(fishes_caught: list[str]) -> list[str]:
@@ -230,8 +232,8 @@ def get_caught_fish(fishes_caught: list[str]) -> list[str]:
     return sorted(res, key=str.lower)
 
 
-def process_fish_data(input_fish_list=None) -> tuple[list, list, pd.DataFrame,
-                                                     pd.DataFrame]:
+def process_fish_data(input_fish_list: Optional[list[str]] = None) -> tuple[
+        list[str], list[str], pd.DataFrame, pd.DataFrame]:
     """
     Processes fish data to determine caught and uncaught fish, and returns
     dataframes for uncaught fish in the Northern Hemisphere (NH) and Southern
@@ -243,10 +245,10 @@ def process_fish_data(input_fish_list=None) -> tuple[list, list, pd.DataFrame,
 
     Returns:
         (tuple(list, list, pd.Dataframe, pd.Dataframe)):
-            caught_fish (list): Caught fish names.
-            uncaught_fish (list): Uncaught fish names.
-            df_nh_uncaught (DataFrame): Uncaught fish in NH.
-            df_sh_uncaught (DataFrame): Uncaught fish in SH.
+            - caught_fish (list): Caught fish names.
+            - uncaught_fish (list): Uncaught fish names.
+            - df_nh_uncaught (DataFrame): Uncaught fish in NH.
+            - df_sh_uncaught (DataFrame): Uncaught fish in SH.
     """
 
     caught_fish = get_caught_fish(input_fish_list or [])

@@ -65,10 +65,11 @@ function formatMonth(month) {
 // console.log(mapMonthsToString([1, 2, 3, 4])); // "Jan - Apr"
 
 function fetchFishData(fishName, containerId) {
-  var currentHemisphere = localStorage.getItem("lastHemisphere")
+  var currentHemisphere = localStorage.getItem("lastHemisphere");
   fetch(`/fish-info/${fishName}`)
     .then((response) => response.json())
     .then((data) => {
+      console.log(data)
       if (data.error) {
         console.error(`Fish not found: ${fishName}`);
         return;
@@ -120,7 +121,7 @@ function fetchFishData(fishName, containerId) {
           .filter(Boolean)
       )}</div>`;
       shMonths.classList.add("fish-card-info", "fish-card-info-months");
-      
+
       if (currentHemisphere === "NH") {
         nhMonths.style.display = "unset";
         shMonths.style.display = "none";
@@ -128,7 +129,16 @@ function fetchFishData(fishName, containerId) {
         nhMonths.style.display = "none";
         shMonths.style.display = "unset";
       }
-      
+
+      const fishButton = document.createElement("button");
+      fishButton.innerHTML =
+        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16"><path d="M13.485 3.379a1 1 0 0 1 1.415 1.415l-8 8a1 1 0 0 1-1.415 0l-4-4a1 1 0 0 1 1.415-1.415L6 10.085l7.485-7.486z"/></svg>';
+      fishButton.classList.add("fish-card-button");
+      fishButton.type = "submit";
+      fishButton.addEventListener("click", function () {
+        console.log("Check clicked for %s", data.name);
+      });
+
       fishCard.append(
         fishImage,
         fishNameElement,
@@ -138,7 +148,8 @@ function fetchFishData(fishName, containerId) {
         fishLocation,
         fishSize,
         nhMonths,
-        shMonths
+        shMonths,
+        fishButton
       );
 
       document.getElementById(containerId).appendChild(fishCard);
