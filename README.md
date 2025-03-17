@@ -96,8 +96,8 @@ The site is written using Flask and mostly HTML and JS. In order to host a local
    ```
    Windows:
    ```cmd
-   C:\> <venv>\Scripts\activate.bat
-   PS C:\> <venv>\Scripts\Activate.ps1 // Don't do this though, why are you using PowerShell?
+   C:\> venv\Scripts\activate.bat
+   PS C:\> venv\Scripts\Activate.ps1 // Don't do this though, why are you using PowerShell?
    ```
 5. Install dependencies
    ```bash
