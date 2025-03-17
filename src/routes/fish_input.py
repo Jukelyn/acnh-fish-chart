@@ -1,6 +1,10 @@
+# pylint: disable=E0401
+"""
+This module defines the fish input page route.
+"""
 import logging
 from flask import render_template, request, jsonify
-from flask_socketio import SocketIO, emit
+from flask_socketio import emit
 import src.main as ut
 
 
