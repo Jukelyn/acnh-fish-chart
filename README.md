@@ -56,7 +56,7 @@ See fuzzy matching below:
 
 <div align="center">
 
-![Method img](https://github.com/Jukelyn/acnh-fish-chart/blob/main/static/images/get_closest_match_image_transparent.svg)
+![Method img](https://github.com/Jukelyn/acnh-fish-chart/blob/main/static/images/get_closest_match_image_transparent.png)
 
 </div>
 
