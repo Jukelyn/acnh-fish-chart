@@ -8,28 +8,43 @@ href="/fish-input"{% endblock %} {% block third_a_inner %} Input Data {%
 endblock %} {% block body %}
 <h1>Enter the fish you have caught (one per line):</h1>
 <div class="flex-wrap display: flex-wrap">
-  <textarea
-    autofocus
-    id="fish-data"
-    placeholder="Type here..."
-    rows="10"
-    cols="50"
-    style="resize: none; display: block; margin: 0 auto"
-  ></textarea>
-  <div
-    style="display: flex; justify-content: center; gap: 10px; margin-top: 10px"
+  <form
+    id="fish-form"
+    onsubmit="event.preventDefault(); saveAndSendData();"
+    style="display: flex; flex-direction: column; align-items: center"
   >
-    <button onclick="saveAndSendData();" class="button_container">Save</button>
-    <button onclick="clearCachedInput();" class="button_container">
-      Clear Cache
-    </button>
-  </div>
+    <textarea
+      id="fish-data"
+      placeholder="Type here..."
+      rows="10"
+      cols="50"
+      style="resize: none; display: block; margin: 0 auto; padding: 8px"
+      onkeydown="preventEnter(event);"
+    ></textarea>
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+      "
+    >
+      <button type="submit" class="button_container">Save</button>
+      <button
+        type="button"
+        onclick="clearCachedInput();"
+        class="button_container"
+      >
+        Clear Cache
+      </button>
+    </div>
+  </form>
 </div>
 <div id="suggestions-container" style="display: none">
   <h2 id="invalid-fish-text">You entered some invalid fish names</h2>
   <ul id="invalid-fish-list"></ul>
 </div>
-<div id="loader" class="loader_spinner_wrapper" style="display: none;">
+<div id="loader" class="loader_spinner_wrapper" style="display: none">
   <div class="loader_spinner"></div>
 </div>
 <script src="{{ url_for('static', filename='js/displaySuggestions.js')}}"></script>

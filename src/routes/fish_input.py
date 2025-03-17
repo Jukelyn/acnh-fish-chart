@@ -23,10 +23,17 @@ def fish_input_route(app):
         """
 
         if request.method == "POST":
-            data = request.data.decode("utf-8")
+            print("POST hit.")
+            input_data = request.form.get("fish-data")
+            if not input_data:
+                input_data = request.get_data(as_text=True)
+
+            if input_data:
+                print("Input data received:")
+                print(input_data)
 
             input_list = [fish.strip().replace("_", " ").lower()
-                          for fish in data.split("\n") if fish.strip()]
+                          for fish in input_data.split("\n") if fish.strip()]
 
             input_list = [ut.renamed.get(fish, fish)
                           for fish in input_list]

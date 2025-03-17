@@ -1,12 +1,14 @@
 function saveAndSendData() {
   const loader = document.getElementById("loader");
+
   // Inputted fish
   let newData = document.getElementById("fish-data").value.toLowerCase();
-  // Existing fish
+
+  // Existing fish in localStorage
   let existingData = localStorage.getItem("userInput");
   let data;
+
   if (existingData) {
-    // Convert existing data to lowercase
     let existingDataArray = existingData.toLowerCase().split("\n");
     let newDataArray = newData.split("\n");
     let combinedDataArray = [
@@ -14,45 +16,50 @@ function saveAndSendData() {
     ];
     data = combinedDataArray.join("\n");
   } else {
-    // Prevent adding duplicate entries if no data exists
     let newDataArray = newData.split("\n");
-    let uniqueNewData = newDataArray.filter(
-      (entry, index, self) => self.indexOf(entry) === index
-    );
+    let uniqueNewData = [...new Set(newDataArray)];
     data = uniqueNewData.join("\n");
   }
 
-  localStorage.setItem("userInput", data); // Stores data in the browser
+  // Store in localStorage
+  localStorage.setItem("userInput", data);
   console.log("Data saved in browser storage!");
 
   loader.style.display = "flex";
-  fetch("/fish-input", {
-    // FIXME
+
+  // Using FormData to send fish data
+  const formData = new FormData();
+  formData.append("fish-data", data);
+
+  fetch("/fish-input/", {
     method: "POST",
-    headers: {
-      "Content-Type": "text/plain",
-    },
-    body: data, // fish data, split by newlines
+    body: formData,
   })
-    .then((response) => response.json())
+    .then((response) => {
+      loader.style.display = "none";
+
+      // Handle non-JSON responses
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        return response.json();
+      } else {
+        return response.text(); // Fallback for debugging
+      }
+    })
     .then((data) => {
       console.log("Flask response: ", data);
-      loader.style.display = "none";
+
       if (data.invalid_fish_names && data.suggestions) {
         console.log("Calling displaySuggestions");
         displaySuggestions(data.invalid_fish_names, data.suggestions);
       } else {
-        console.log("No invalid fish names or suggestions found");
+        if (typeof data === "string" && data.includes("<html")) {
+          console.log("Received an HTML page instead of JSON!");
+          return; // Go to page
+        }
       }
     })
     .catch((error) => {
-      // SyntaxError happens when all entries are valid... or so I hope...
-      if (error instanceof SyntaxError) {
-        console.error("SyntaxError:", error);
-        console.error("This should usually be the index page HTML");
-        // window.location.href = "/";
-      } else {
-        console.error("Error:", error);
-      }
+      console.error("Fetch error:", error);
     });
 }
