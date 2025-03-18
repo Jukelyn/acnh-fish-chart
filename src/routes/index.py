@@ -1,6 +1,8 @@
 # pylint: disable=E0401
 """
-This module defines the index page.
+This module provides the route for the index page. It handles GET requests
+to render the input form and POST requests set the calendar image based on the
+hemisphere selection.
 """
 import logging
 import json

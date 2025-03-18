@@ -26,8 +26,8 @@ def fish_input_route(app: Flask):
 
         - On GET requests, renders the fish input form.
         - On POST requests, processes the input fish data, checks for issues,
-          and provides suggestions if necessary.
-        - Supports resetting calendars if the input is "reset".
+          and provides suggestions if necessary. Also supports resetting
+          calendars if the input is "reset".
 
         Returns:
             Response: JSON with status or suggestions on POST, or rendered

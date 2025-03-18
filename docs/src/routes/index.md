@@ -1,3 +1,3 @@
-# `src/routes/index.py`
+# Index
 
 ::: src.routes.index

@@ -1,6 +1,7 @@
 # pylint: disable=E0401
 """
-This module defines the index page.
+This module provides the route for the export page. It handles GET requests to
+display fish data, including all available fish and uncaught fish.
 """
 import logging
 import json

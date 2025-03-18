@@ -1,11 +1,8 @@
-# Welcome to MkDocs
+# Local Development
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+- `python3 -m venv venv` - Creates the virtual enviornment.
+- `source venv/bin/activate` - Activates the virtual enviornment.
+- `pip install -r requirements.txt` - Installs dependencies for the program
+- `python run.py` - Runs a local flask server.
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
-
+::: run

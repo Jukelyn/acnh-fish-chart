@@ -1,3 +1,3 @@
-# `src/routes/fish_input.py`
+# Fish Input
 
 ::: src.routes.fish_input

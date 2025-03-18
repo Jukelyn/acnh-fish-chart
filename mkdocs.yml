@@ -2,15 +2,15 @@
 site_name: ACNH Fish Spawning Calendar
 
 nav:
-  - Home: index.md
   - API Reference:
-      - Run: run.md
+      - Local Dev and Hosting: index.md
       - Source Code:
-        - main: src/main.md
+        - Main Utils: src/main.md
         - Routes:
-            - fish_info: src/routes/fish_info.md
-            - fish_input: src/routes/fish_input.md
-            - index: src/routes/index.md
+            - Index: src/routes/index.md
+            - Fish Input: src/routes/fish_input.md
+            - Fish Info: src/routes/fish_info.md
+            - Export: src/routes/export.md
 
 theme:
   name: material
@@ -65,11 +65,11 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github-alt
-      link: https://github.com/james-willett
+      link: https://github.com/Jukelyn
     - icon: fontawesome/brands/twitter
-      link: https://twitter.com/TheJamesWillett
+      link: https://x.com/jukelyn_
     - icon: fontawesome/brands/linkedin
-      link: https://www.linkedin.com/in/willettjames/
+      link: https://www.linkedin.com/in/mehraza/
 
 copyright: |
   &copy; 2024 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0"  target="_blank" rel="noopener">CC BY-NC-ND 4.0</a>

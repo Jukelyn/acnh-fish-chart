@@ -247,6 +247,7 @@ def process_fish_data(input_fish_list: Optional[list[str]] = None) -> tuple[
 
     Returns:
         (tuple(list, list, pd.Dataframe, pd.Dataframe)):
+
             - caught_fish (list): Caught fish names.
             - uncaught_fish (list): Uncaught fish names.
             - df_nh_uncaught (DataFrame): Uncaught fish in NH.

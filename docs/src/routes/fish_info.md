@@ -1,3 +1,3 @@
-# `src/routes/fish_info.py`
+# Fish Info
 
 ::: src.routes.fish_info
