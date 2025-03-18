@@ -12,6 +12,7 @@ Routes:
 from .fish_info import fish_info_route
 from .fish_input import fish_input_route
 from .index import index_route
+from .export import export_route
 
 
 def register_routes(app):
@@ -29,3 +30,4 @@ def register_routes(app):
     index_route(app)
     fish_input_route(app)
     fish_info_route(app)
+    export_route(app)
