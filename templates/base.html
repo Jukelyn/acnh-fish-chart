@@ -18,7 +18,7 @@
   <body {% block body_attributes %}{% endblock %}>
     <div id="loader" class="loader_spinner_wrapper" style="display: none">
       <div class="loader_spinner"></div>
-    </div> 
+    </div>
     <div class="main-content">
       <div class="settings-menu-options">
         <div id="spin-status" class="light_text"></div>
@@ -33,7 +33,10 @@
         </ul>
       </div>
       <div class="topnav">
-        <a {% block first_a_attributes %}{% endblock %}>
+        <a
+          class="gear settings-menu"
+          {% block settings_a_attributes %} {% endblock %}
+        >
           <svg
             viewBox="0 0 24 24"
             width="32"
@@ -65,11 +68,11 @@
             </g>
           </svg>
         </a>
-        <a {% block second_a_attributes %}{% endblock %}>
-          {% block second_a_inner %}{% endblock %}
+        <a href="/" {% block home_a_attributes %}{% endblock %}>
+          {% block home_a_inner %}Home{% endblock %}
         </a>
-        <a {% block third_a_attributes %}{% endblock %}>
-          {% block third_a_inner %}{% endblock %}
+        <a href="/fish-input" {% block input_a_attributes %}{% endblock %}>
+          {% block input_a_inner %}Input Data{% endblock %}
         </a>
       </div>
       {% block body %} {% endblock %}

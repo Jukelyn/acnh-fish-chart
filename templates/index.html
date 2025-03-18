@@ -1,9 +1,12 @@
-{% extends "base.html" %} {% block body_attributes %} style="--fish-count:
-{{uncaught|length }}" {% endblock %} {% block first_a_attributes %} class="gear
-settings-menu" {% endblock %} {% block second_a_attributes %} class="active"
-href="/" {% endblock %} {% block second_a_inner %} Home {% endblock %} {% block
-third_a_attributes %} href="/fish-input"{% endblock %} {% block third_a_inner %}
-Input Data {% endblock %} {% block body %}
+{% extends "base.html" %}
+{% block body_attributes %} style="--fish-count: {{uncaught|length }}"
+{% endblock %}
+
+{% block home_a_attributes %}
+class="active"
+{% endblock %}
+
+{% block body %}
 <script src="{{ url_for('static', filename='js/resetImage.js')}}"></script>
 <h1>ACNH Fish Spawning Calendar</h1>
 {% if image_url %}
