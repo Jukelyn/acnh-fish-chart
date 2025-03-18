@@ -2,7 +2,7 @@
 
 <div align="center">
    
-   ![GitHub License](https://img.shields.io/github/license/Jukelyn/acnh-fish-chart?label=License&color=springgreen)
+   ![GitHub License](https://img.shields.io/github/license/Jukelyn/acnh-fish-chart?label=Licensing&color=springgreen)
    ![Website](https://img.shields.io/website?url=https%3A%2F%2Facnh-fish.jukelyn.com&up_message=Up&up_color=springgreen&down_color=crimson&down_message=Down&label=Site%20Status&cacheSeconds=10)
    ![Pylint Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/pylint.yaml/badge.svg?color=springgreen)
    ![Docker Workflow Status Badge](https://github.com/Jukelyn/acnh-fish-chart/actions/workflows/restart_docker.yaml/badge.svg?color=springgreen)
