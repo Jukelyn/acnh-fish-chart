@@ -1,16 +1,15 @@
-{% extends "base.html" %}
-{% block body_attributes %} style="--fish-count: {{uncaught|length }}"
-{% endblock %}
-
-{% block home_a_attributes %}
-class="active"
-{% endblock %}
-
-{% block body %}
+{% extends "base.html" %} {% block body_attributes %} style="--fish-count:
+{{uncaught|length }}" {% endblock %} {% block home_a_attributes %}
+class="active" {% endblock %} {% block body %}
 <script src="{{ url_for('static', filename='js/resetImage.js')}}"></script>
 <h1>ACNH Fish Spawning Calendar</h1>
 {% if image_url %}
-<div id="popup" class="popup">
+<script>
+  function closePopup(popupId) {
+    document.getElementById(popupId).style.display = "none";
+  }
+</script>
+<div id="flying-popup" class="popup">
   <div class="popup-content">
     <img
       src="{{ url_for('static', filename='images/plane_flying_slash.svg')}}"
@@ -18,7 +17,17 @@ class="active"
       class="popup-image"
     />
     <p>We can't fly across the globe that fast!</p>
-    <button class="popup-button" onclick="closePopup()">Dismiss</button>
+    <button class="popup-button" onclick="closePopup('flying-popup')">
+      Dismiss
+    </button>
+  </div>
+</div>
+<div id="reset-popup" class="popup">
+  <div class="popup-content">
+    <p>There is nothing to reset.</p>
+    <button class="popup-button" onclick="closePopup('reset-popup')">
+      Dismiss
+    </button>
   </div>
 </div>
 <div class="image_container_outer">

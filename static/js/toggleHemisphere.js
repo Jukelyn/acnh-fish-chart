@@ -1,14 +1,10 @@
 function showPopup() {
-  const popup = document.getElementById("popup");
+  const popup = document.getElementById("flying-popup");
   popup.style.display = "flex";
 
   setTimeout(() => {
     popup.style.display = "none";
   }, 5000);
-}
-
-function closePopup() {
-  document.getElementById("popup").style.display = "none";
 }
 
 let lastCallTime = 0;

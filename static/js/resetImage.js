@@ -1,8 +1,14 @@
 function resetImage() {
   let existingData = localStorage.getItem("userInput");
-  
+
   if (existingData === null) {
+    const popup = document.getElementById("reset-popup");
+    popup.style.display = "flex";
     console.log("There is nothing to reset.");
+    console.log("Reset popup displayed.");
+    setTimeout(() => {
+      popup.style.display = "none";
+    }, 2500);
     return;
   }
 
