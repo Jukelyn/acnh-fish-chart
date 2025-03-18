@@ -132,7 +132,7 @@ function fetchFishData(fishName, containerId) {
 
       const fishButton = document.createElement("button");
       fishButton.innerHTML =
-        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16"><path d="M13.485 3.379a1 1 0 0 1 1.415 1.415l-8 8a1 1 0 0 1-1.415 0l-4-4a1 1 0 0 1 1.415-1.415L6 10.085l7.485-7.486z"/></svg>';
+        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.485 3.379a1 1 0 0 1 1.415 1.415l-8 8a1 1 0 0 1-1.415 0l-4-4a1 1 0 0 1 1.415-1.415L6 10.085l7.485-7.486z"/></svg>';
       fishButton.classList.add("fish-card-button");
       fishButton.type = "submit";
       fishButton.addEventListener("click", function () {

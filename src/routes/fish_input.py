@@ -1,25 +1,37 @@
 # pylint: disable=E0401
 """
-This module defines the fish input page route.
+This module provides the route for the fish input page. It handles GET requests
+to render the input form and POST requests to process fish data, and can reset
+calendars when requested.
 """
 import logging
-from flask import render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify
 import src.main as ut
 
 
-def fish_input_route(app):
+def fish_input_route(app: Flask):
     """
-    Registers the /fish-input route.
-
-    This function sets up a simple route that serves the fish input page.
+    Register the fish input page route with the Flask app.
 
     Args:
         app (Flask): The Flask application instance.
+
+    Returns:
+        None
     """
     @app.route("/fish-input/", methods=["GET", "POST"])
     def fish_input():
         """
-        Serves the fish input page.
+        Handle requests for the fish input page.
+
+        - On GET requests, renders the fish input form.
+        - On POST requests, processes the input fish data, checks for issues,
+          and provides suggestions if necessary.
+        - Supports resetting calendars if the input is "reset".
+
+        Returns:
+            Response: JSON with status or suggestions on POST, or rendered
+                      HTML on GET.
         """
         if request.method == "POST":
             print("POST hit.")

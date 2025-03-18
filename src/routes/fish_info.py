@@ -1,24 +1,26 @@
 # pylint: disable=E0401
 """
-This module defines the fish information retrieval routes.
+This module provides routes and functions for retrieving detailed fish
+information from a JSON data source.
 """
 import json
-from flask import jsonify, Response
+from flask import Flask, jsonify, Response
 
 # Load fish data from a JSON file
 with open("data/fish_info.json", "r", encoding="utf-8") as file:
     fish_list = {fish["name"].lower(): fish for fish in json.load(file)}
 
 
-def get_fish_info(fish_name: str) -> Response:
+def get_fish_info(fish_name: str):
     """
-    Returns all specific information about the given fish.
+    Retrieve information about a specific fish by its name.
 
     Args:
-        fish_name (str): Fish to be queried.
+        fish_name (str): The name of the fish to retrieve information for.
 
     Returns:
-        (Response): Json representation of the fish data.
+        Response: A JSON response containing fish details if found, otherwise
+                  a 404 error with an error message.
     """
     fish_name = fish_name.lower()
 
@@ -42,16 +44,25 @@ def get_fish_info(fish_name: str) -> Response:
     return response
 
 
-def fish_info_route(app):
+def fish_info_route(app: Flask):
     """
-    Registers the /fish-info route.
-
-    This function retrieves fish data based on the fish name provided as a
-    query parameter.
+    Register the fish information retrieval route with the Flask app.
 
     Args:
         app (Flask): The Flask application instance.
+
+    Returns:
+        None
     """
     @app.route("/fish-info/<fish_name>", methods=["GET"])
     def wrapped_get_fish_info(fish_name: str):
+        """
+        Handle GET requests to retrieve fish information by name.
+
+        Args:
+            fish_name (str): The name of the fish to retrieve information for.
+
+        Returns:
+            Response: JSON response with fish details or an error message.
+        """
         return get_fish_info(fish_name)
