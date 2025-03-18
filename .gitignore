@@ -1,5 +1,6 @@
 nginx_65.conf
 dev_notes
+src/nookipedia.py
 **.vscode**
 **.DS_Store
 **caught.txt
