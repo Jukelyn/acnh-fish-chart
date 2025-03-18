@@ -31,6 +31,11 @@ def fish_input_route(app):
                 print("Input data received:")
                 print(input_data)
 
+                if input_data.strip().lower() == "reset":
+                    print("Resetting calendars.")
+                    ut.update_calendars()
+                    return jsonify({"status": "Calendars reset successfully"})
+
             input_list = [fish.strip().replace("_", " ").lower()
                           for fish in input_data.split("\n") if fish.strip()]
 

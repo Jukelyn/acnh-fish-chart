@@ -68,8 +68,8 @@ function displaySuggestions(invalidFish, suggestions) {
     // Add the "Ignore" button next to the invalid fish name
     const ignoreButton = document.createElement("button");
     ignoreButton.textContent = "Ignore";
+    ignoreButton.classList.add("ignore_button_container");
     ignoreButton.style.marginLeft = "10px";
-    ignoreButton.style.cursor = "pointer";
 
     ignoreButton.addEventListener("click", () => {
       console.log("Ignore button clicked for:", fish);

@@ -54,8 +54,9 @@ function saveAndSendData() {
         displaySuggestions(data.invalid_fish_names, data.suggestions);
       } else {
         if (typeof data === "string" && data.includes("<html")) {
-          console.log("Received an HTML page instead of JSON!");
-          return; // Go to page
+          console.log("Received an HTML page instead of JSON, not a problem.");
+          window.location.href = "/";
+          return;
         }
       }
     })

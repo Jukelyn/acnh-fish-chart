@@ -69,7 +69,7 @@ function fetchFishData(fishName, containerId) {
   fetch(`/fish-info/${fishName}`)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data)
+      // console.log(data)
       if (data.error) {
         console.error(`Fish not found: ${fishName}`);
         return;

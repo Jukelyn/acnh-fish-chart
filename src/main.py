@@ -172,7 +172,8 @@ def plot_spawning_calendar(
     plt.close()
 
 
-def update_calendars(nh_df: pd.DataFrame, sh_df: pd.DataFrame) -> None:
+def update_calendars(nh_df: pd.DataFrame = NH_df,
+                     sh_df: pd.DataFrame = SH_df) -> None:
     """Updates the calendar images based on the fish dataframes.
 
     Args:
@@ -182,13 +183,14 @@ def update_calendars(nh_df: pd.DataFrame, sh_df: pd.DataFrame) -> None:
     Returns:
         (None): This just calls plot_spawning_calendar() for both hemispheres.
     """
+
     plot_spawning_calendar(nh_df, "Northern Hemisphere",
                            "NH_spawning_calendar.png")
     plot_spawning_calendar(sh_df, "Southern Hemisphere",
                            "SH_spawning_calendar.png")
 
 
-update_calendars(NH_df, SH_df)
+update_calendars()
 
 all_fishes: list[str] = sorted(
     list(fish_df["Name"].dropna().unique()), key=str.lower)

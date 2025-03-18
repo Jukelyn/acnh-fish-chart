@@ -1,6 +1,7 @@
 .gear {
     animation: spin 2s linear infinite;
     animation-play-state: paused;
+    cursor: pointer;
 }
 
 .gear:hover {

@@ -1,5 +1,5 @@
 function updateFishCards() {
-  console.log("Updated fish cards to new hemisphere.");
+  // console.log("Updated fish cards to new hemisphere.");
 
   // Clear existing content in the containers before re-rendering
   const allFishContainer = document.getElementById("all_fish_list_container");

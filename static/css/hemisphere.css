@@ -22,3 +22,8 @@
     display: inline-block;
     margin-left: 10px;
 }
+
+.button_container.reset_image {
+    display: inline-block;
+    padding: 1em 1.2em;
+}
