@@ -3,6 +3,7 @@
 This module defines the index page.
 """
 import logging
+import json
 from flask import render_template
 import src.main as ut
 
@@ -26,4 +27,6 @@ def export_route(app):
             "export.html",
             fish_list=ut.all_fish_list,
             uncaught_fish=ut.uncaught,
+            fish_list_json=json.dumps(ut.all_fish_list),
+            uncaught_fish_json=json.dumps(sorted(ut.uncaught, key=str.lower))
         )

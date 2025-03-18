@@ -1,4 +1,84 @@
-{% extends "base.html" %}
-{% block body %}
+{% extends "base.html" %} {% block body %}
 <h1>Export page</h1>
+<div>
+  <!-- Filter options -->
+</div>
+<div>
+  <!-- Export options -->
+</div>
+<!-- Just caught fish names -->
+<div>
+  <textarea
+    class="txt_area"
+    id="export-fish-data"
+    placeholder="You have no fish tracked."
+    rows="10"
+    cols="50"
+    readonly
+  ></textarea>
+</div>
+<script>
+  const caughtFish = localStorage.getItem("userInput");
+  const textarea = document.getElementById("export-fish-data");
+
+  if (caughtFish) {
+    textarea.value = caughtFish;
+  }
+</script>
+<!-- Fish details -->
+<div id="lists_parent_container">
+  <div class="button_parent">
+    <h2>List of All Fish:</h2>
+    <button
+      onclick="toggleFishList('fish_list_container', 'all_fish_btn')"
+      id="all_fish_btn"
+      class="button_container"
+    >
+      Show
+    </button>
+  </div>
+  <!-- <script>
+    var allFishList = '{{ fish_list | tojson | safe }}';
+    console.log(allFishList); // Check in the browser console
+  </script> -->
+
+  <div id="fish_list_container" style="display: none">
+    <div class="fish-count">Total Fish: {{ fish_list|length }}</div>
+    <div
+      id="all_fish_list_container"
+      class="fish-list-container fish-list"
+    ></div>
+  </div>
+
+  <div class="button_parent">
+    <h2>List of Uncaught Fish:</h2>
+    <button
+      onclick="toggleFishList('uncaught-fish-list-container', 'uncaught_fish_btn')"
+      id="uncaught_fish_btn"
+      class="button_container"
+    >
+      Show
+    </button>
+  </div>
+
+  <div id="uncaught-fish-list-container" style="display: none">
+    <div class="fish-count">
+      Total Uncaught Fish: {{ uncaught_fish|length }}
+    </div>
+    <div
+      id="uncaught_list_container"
+      class="fish-list-container fish-list"
+    ></div>
+  </div>
+
+  <div
+    class="txt_area"
+    id="fish-data"
+    data-fish-list-json="{{ fish_list_json }}"
+    data-uncaught-fish-json="{{ uncaught_fish_json }}"
+  ></div>
+</div>
+
+<script src="{{ url_for('static', filename='js/makeFishCards.js')}}"></script>
+<script src="{{ url_for('static', filename='js/toggleFishList.js')}}"></script>
 {% endblock %}
