@@ -17,7 +17,7 @@ def fish_input_route(app: Flask):
         app (Flask): The Flask application instance.
 
     Returns:
-        None
+        (None): This just registers the /fish-input route.
     """
     @app.route("/fish-input/", methods=["GET", "POST"])
     def fish_input():

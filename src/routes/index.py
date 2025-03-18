@@ -20,6 +20,9 @@ def index_route(app):
 
     Args:
         app (Flask): The Flask application instance.
+
+    Returns:
+        (None): This just registers the / route.
     """
     @app.route("/", methods=["GET", "POST"])
     def index():

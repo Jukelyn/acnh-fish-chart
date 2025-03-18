@@ -19,7 +19,7 @@ def get_fish_info(fish_name: str):
         fish_name (str): The name of the fish to retrieve information for.
 
     Returns:
-        Response: A JSON response containing fish details if found, otherwise
+        (Response): A JSON response containing fish details if found, otherwise
                   a 404 error with an error message.
     """
     fish_name = fish_name.lower()
@@ -52,7 +52,7 @@ def fish_info_route(app: Flask):
         app (Flask): The Flask application instance.
 
     Returns:
-        None
+        (None): This just registers the /fish-info route.
     """
     @app.route("/fish-info/<fish_name>", methods=["GET"])
     def wrapped_get_fish_info(fish_name: str):
