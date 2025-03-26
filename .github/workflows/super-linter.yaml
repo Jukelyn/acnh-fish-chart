@@ -22,6 +22,8 @@ on:
       - 'docker-compose.yaml'
       - 'Dockerfile'
 
+  workflow_dispatch:
+
 permissions:
   contents: read
   pull-requests: read # Use "write" for want PR comments
